@@ -1,0 +1,7 @@
+.next/
+node_modules/
+out/
+dist/
+.open-next/
+.DS_Store
+*.log
