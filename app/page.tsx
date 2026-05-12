@@ -1,9 +1,21 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
-import SystemIntegrityGame from "./system-integrity-game";
-
 const experience = [
+  {
+    role: "Full Stack Developer",
+    company: "Afya AI",
+    location: "Doha, Qatar",
+    period: "Apr 2025 - Present",
+    points: [
+      "Developed and maintained full-stack features for a healthcare system in collaboration with Hamad Medical Corporation.",
+      "Designed and implemented backend services and RESTful APIs to support data exchange and system integration across healthcare-related modules.",
+      "Built and maintained responsive web application features using modern frontend and backend technologies.",
+      "Contributed to system reliability through debugging, testing, and validation of core functionalities across development environments.",
+      "Worked closely with cross-functional teams to translate requirements into scalable and maintainable software solutions.",
+      "Participated in continuous improvement of system performance, usability, and development workflows within an enterprise healthcare context.",
+    ],
+    stack: ["Node.js", "Flutter", "REST API", "GitHub"],
+  },
   {
     role: "Software Quality Assurance",
     company: "Edgage",
@@ -121,37 +133,23 @@ const documents = [
   },
 ];
 
+const contactItems = [
+  {
+    label: "Email",
+    value: "charlestiu16@gmail.com",
+    href: "mailto:charlestiu16@gmail.com",
+  },
+];
+
+const profileLinks = [
+  {
+    label: "LinkedIn",
+    value: "linkedin.com/in/charles-tiu-69a6a9328/",
+    href: "https://www.linkedin.com/in/charles-tiu-69a6a9328/",
+  },
+];
+
 export default function Home() {
-  const [breachActive, setBreachActive] = useState(false);
-  const [repairsCompleted, setRepairsCompleted] = useState(0);
-  const [totalRepairs, setTotalRepairs] = useState(0);
-
-  const handleGameStatusChange = useCallback(
-    (status: { active: boolean; repaired: number; total: number }) => {
-      setBreachActive(status.active);
-      setRepairsCompleted(status.repaired);
-      setTotalRepairs(status.total);
-    },
-    [],
-  );
-
-  const breachedCount = useMemo(
-    () => Math.max(0, totalRepairs - repairsCompleted),
-    [repairsCompleted, totalRepairs],
-  );
-
-  function isBreached(slot: number) {
-    return breachActive && slot < totalRepairs && slot >= repairsCompleted;
-  }
-
-  function breachClasses(slot: number, base: string) {
-    return `${base} ${isBreached(slot) ? "breach-card" : ""}`.trim();
-  }
-
-  function breachLabel(slot: number, corrupted: string, restored: string) {
-    return isBreached(slot) ? corrupted : restored;
-  }
-
   return (
     <main className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
       <section className="relative overflow-hidden">
@@ -174,9 +172,6 @@ export default function Home() {
               <a className="nav-link" href="#projects">
                 Projects
               </a>
-              <a className="nav-link" href="#integrity-mode">
-                Mini Game
-              </a>
               <a className="nav-link" href="#skills">
                 Skills
               </a>
@@ -188,14 +183,9 @@ export default function Home() {
 
           <div className="grid gap-14 py-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-start lg:py-16">
             <div className="space-y-8">
-              <div
-                className={breachClasses(
-                  0,
-                  "inline-flex items-center gap-3 rounded-full border border-[var(--line)] bg-white/5 px-4 py-2 text-sm text-[var(--muted)] shadow-[0_14px_36px_rgba(2,8,18,0.28)] backdrop-blur",
-                )}
-              >
-                <span className={`h-2.5 w-2.5 rounded-full ${isBreached(0) ? "bg-rose-400" : "bg-[var(--accent)]"}`} />
-                {breachLabel(0, "Warning: location node integrity unstable", "Based in Doha, Qatar")}
+              <div className="inline-flex items-center gap-3 rounded-full border border-[var(--line)] bg-white/5 px-4 py-2 text-sm text-[var(--muted)] shadow-[0_14px_36px_rgba(2,8,18,0.28)] backdrop-blur">
+                <span className="h-2.5 w-2.5 rounded-full bg-[var(--accent)]" />
+                Based in Doha, Qatar
               </div>
               <div className="space-y-6">
                 <p className="section-kicker">QA-driven developer portfolio</p>
@@ -233,33 +223,13 @@ export default function Home() {
                   <p className="section-kicker">Education</p>
                   <h2 className="mt-3 font-display text-2xl">University of Doha for Science and Technology</h2>
                 </div>
-                <span
-                  className={breachClasses(
-                    1,
-                    "rounded-full border border-[var(--line)] bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.2em] text-[var(--muted)]",
-                  )}
-                >
-                  {breachLabel(1, "Archive Breach", "Aug 2025")}
+                <span className="rounded-full border border-[var(--line)] bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
+                  Aug 2025
                 </span>
               </div>
               <p className="mt-4 text-[var(--soft)]">
                 Bachelor of Science in Information Systems with a portfolio spanning QA, backend engineering, mobile product work, and interactive 3D experiences.
               </p>
-              <div
-                className={breachClasses(
-                  2,
-                  "mt-6 rounded-3xl border border-[var(--line)] bg-[linear-gradient(135deg,rgba(47,134,212,0.16),rgba(240,174,91,0.12))] p-5",
-                )}
-              >
-                <p className="text-sm uppercase tracking-[0.2em] text-[var(--muted)]">Portfolio angle</p>
-                <p className="mt-2 text-[var(--soft)]">
-                  {breachLabel(
-                    2,
-                    "Critical note: presentation layer showing instability. Restore scan progress to normalize this node.",
-                    "Recruiter-friendly at a glance, but with enough visual identity to feel remembered after the interview.",
-                  )}
-                </p>
-              </div>
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
                 <div className="stat-card">
                   <p className="stat-label">Specialties</p>
@@ -320,7 +290,7 @@ export default function Home() {
           <p className="section-kicker">Projects</p>
         </div>
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <article className="project-card" key={project.name}>
               <div className="flex items-center justify-between gap-4">
                 <p className="text-sm uppercase tracking-[0.22em] text-[var(--muted)]">{project.type}</p>
@@ -328,17 +298,8 @@ export default function Home() {
               </div>
               <h3 className="mt-6 font-display text-3xl">{project.name}</h3>
               <p className="mt-4 text-[var(--soft)]">{project.description}</p>
-              <p
-                className={breachClasses(
-                  index < 2 ? 3 + index : -1,
-                  "mt-5 rounded-2xl border border-[var(--line)] bg-white/5 p-4 text-sm text-[var(--muted)]",
-                )}
-              >
-                {breachLabel(
-                  index < 2 ? 3 + index : -1,
-                  `Corrupted project node: ${project.name.toUpperCase()} REQUIRES REPAIR`,
-                  project.highlight,
-                )}
+              <p className="mt-5 rounded-2xl border border-[var(--line)] bg-white/5 p-4 text-sm text-[var(--muted)]">
+                {project.highlight}
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {project.stack.map((tool) => (
@@ -351,8 +312,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
-      <SystemIntegrityGame onStatusChange={handleGameStatusChange} />
 
       <section className="mx-auto w-full max-w-7xl px-6 pb-20 pt-0 sm:px-10 lg:px-12">
         <div className="glass-panel p-6 sm:p-8">
@@ -389,11 +348,6 @@ export default function Home() {
           <p className="mt-5 max-w-2xl text-[var(--soft)]">
             My background blends structured QA practices with development experience across mobile apps, APIs, data systems, and real-time 3D tools.
           </p>
-          {breachActive && (
-            <p className="mt-4 text-sm uppercase tracking-[0.2em] text-rose-300">
-              {`${breachedCount} active breach node${breachedCount === 1 ? "" : "s"} still visible across the portfolio`}
-            </p>
-          )}
         </div>
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
           {skillGroups.map((group) => (
@@ -411,34 +365,57 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto grid w-full max-w-7xl gap-6 px-6 py-20 sm:px-10 lg:grid-cols-[1fr_1fr] lg:px-12">
+      <section className="mx-auto grid w-full max-w-7xl gap-6 px-6 py-20 sm:px-10 lg:grid-cols-[1.08fr_0.92fr] lg:px-12">
         <article className="glass-panel p-6 sm:p-8" id="documents">
           <p className="section-kicker">Documents</p>
           <h2 className="mt-3 font-display text-3xl">CV and certificates</h2>
           <div className="mt-6 space-y-3">
             {documents.map((doc) => (
-              <a
-                className={breachClasses(5, "document-link")}
-                href={doc.href}
-                key={doc.label}
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a className="document-link" href={doc.href} key={doc.label} target="_blank" rel="noreferrer">
                 <span>
-                  <span className="block text-base font-medium text-[var(--text)]">
-                    {isBreached(5) ? `Document Warning: ${doc.label}` : doc.label}
-                  </span>
-                  <span className="mt-1 block text-sm text-[var(--soft)]">
-                    {isBreached(5)
-                      ? "Certificate registry unstable. Continue repairs to restore document clarity."
-                      : doc.note}
-                  </span>
+                  <span className="block text-base font-medium text-[var(--text)]">{doc.label}</span>
+                  <span className="mt-1 block text-sm text-[var(--soft)]">{doc.note}</span>
                 </span>
-                <span className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">
-                  {isBreached(5) ? "Alert" : "Open"}
-                </span>
+                <span className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">Open</span>
               </a>
             ))}
+          </div>
+        </article>
+
+        <article className="glass-panel p-6 sm:p-8">
+          <p className="section-kicker">Connect</p>
+          <h2 className="mt-3 font-display text-3xl">Contact and profiles</h2>
+
+          <div className="mt-8 grid gap-4">
+            <div className="info-card">
+              <p className="info-card-label">Contact</p>
+              <div className="mt-4 space-y-3">
+                {contactItems.map((item) => (
+                  <a className="profile-link" href={item.href} key={item.label}>
+                    <span>
+                      <span className="block text-sm uppercase tracking-[0.18em] text-[var(--muted)]">{item.label}</span>
+                      <span className="mt-2 block text-base font-medium text-[var(--text)]">{item.value}</span>
+                    </span>
+                    <span className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">Open</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div className="info-card">
+              <p className="info-card-label">GitHub and LinkedIn</p>
+              <div className="mt-4 space-y-3">
+                {profileLinks.map((item) => (
+                  <a className="profile-link" href={item.href} key={item.label} target="_blank" rel="noreferrer">
+                    <span>
+                      <span className="block text-sm uppercase tracking-[0.18em] text-[var(--muted)]">{item.label}</span>
+                      <span className="mt-2 block text-base font-medium text-[var(--text)]">{item.value}</span>
+                    </span>
+                    <span className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">Visit</span>
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </article>
       </section>
