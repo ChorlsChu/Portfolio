@@ -28,7 +28,7 @@ const experience = [
       "Built and maintained QA documentation, test cases, and checklists to improve coverage and team efficiency.",
       "Developed basic end-to-end automation with Playwright and Cucumber to support regression testing.",
     ],
-    stack: ["JavaScript", "Node.js","Playwright", "Cucumber", "GitHub", "Google Sheets", "VS Code"],
+    stack: ["JavaScript", "Node.js", "Playwright", "Cucumber", "GitHub", "Google Sheets", "VS Code"],
   },
   {
     role: "Unreal Engine Developer",
@@ -47,6 +47,16 @@ const experience = [
 ];
 
 const projects = [
+  {
+    name: "Stick War 2: Enhanced Edition Mod",
+    type: "Campaign overhaul and optimization mod",
+    period: "Mar 2026 - Present",
+    highlight: "Current fan-made Flash mod focused on campaign expansion, boss systems, AI behavior, bug fixing, and performance cleanup.",
+    description:
+      "A large campaign-focused overhaul that adds boss encounters, replayable campaign levels, smarter enemy behavior, player-side toggles, and smoother runtime behavior for a Flash/AS3 game.",
+    stack: ["Flash", "ActionScript 3", "Performance Optimization", "Game Modding", "QA Testing"],
+    href: "/projects/flash-optimization-mod",
+  },
   {
     name: "Sensei",
     type: "Mobile application",
@@ -311,6 +321,11 @@ export default function Home() {
                   </span>
                 ))}
               </div>
+              {"href" in project && project.href ? (
+                <a className="case-study-link" href={project.href}>
+                  View case study
+                </a>
+              ) : null}
             </article>
           ))}
         </div>
