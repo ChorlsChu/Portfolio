@@ -14,7 +14,7 @@ const experience = [
       "Worked closely with cross-functional teams to translate requirements into scalable and maintainable software solutions.",
       "Participated in continuous improvement of system performance, usability, and development workflows within an enterprise healthcare context.",
     ],
-    stack: ["Node.js", "Flutter", "REST API", "GitHub"],
+    stack: ["JavaScript", "Node.js", "Flutter", "REST API", "GitHub"],
   },
   {
     role: "Software Quality Assurance",
@@ -28,7 +28,7 @@ const experience = [
       "Built and maintained QA documentation, test cases, and checklists to improve coverage and team efficiency.",
       "Developed basic end-to-end automation with Playwright and Cucumber to support regression testing.",
     ],
-    stack: ["Playwright", "Cucumber", "GitHub", "Google Sheets", "VS Code"],
+    stack: ["JavaScript", "Node.js","Playwright", "Cucumber", "GitHub", "Google Sheets", "VS Code"],
   },
   {
     role: "Unreal Engine Developer",
@@ -42,7 +42,7 @@ const experience = [
       "Designed and maintained RESTful APIs to support communication between client and server systems.",
       "Improved usability and performance by refining workflows across cross-functional development efforts.",
     ],
-    stack: ["Unreal Engine 5", "Node.js", "Firebase", "REST API", "GitHub"],
+    stack: ["Unreal Engine 5", "Next.js", "JavaScript", "Firebase", "REST API", "GitHub"],
   },
 ];
 
@@ -63,7 +63,7 @@ const projects = [
     highlight: "Combined real-time monitoring, predictive alerts, dashboard UI, and 3D interaction.",
     description:
       "An advanced monitoring system with sensor-driven telemetry, temperature prediction, and an interactive dashboard for system status and server visualization.",
-    stack: ["Node.js", "Python", "MongoDB", "Machine Learning", "GitHub"],
+    stack: ["JavaScript", "Node.js", "Python", "MongoDB", "Machine Learning", "GitHub"],
   },
   {
     name: "Quiz App",
@@ -95,7 +95,7 @@ const skillGroups = [
   },
   {
     title: "Backend",
-    items: ["Node.js", "Express.js", "FastAPI", "Flask", "SQLAlchemy"],
+    items: ["Node.js", "Next.js", "Express.js", "FastAPI", "Flask", "SQLAlchemy"],
   },
   {
     title: "Frontend and Mobile",
@@ -162,7 +162,7 @@ export default function Home() {
                 Charles Emmanuel C. Tiu
               </p>
               <p className="mt-2 max-w-md text-sm text-[var(--soft)]">
-                Information Systems graduate building reliable software, polished user flows, and quality-first digital products.
+                QA-focused Information Systems graduate building reliable software, tested workflows, and practical full-stack products.
               </p>
             </div>
             <nav className="flex flex-wrap gap-3 text-sm text-[var(--soft)]">
@@ -188,9 +188,12 @@ export default function Home() {
                 Based in Doha, Qatar
               </div>
               <div className="space-y-6">
-                <p className="section-kicker">QA-driven developer portfolio</p>
+                <p className="section-kicker">Software QA and full-stack developer</p>
+                <h1 className="section-title">
+                  Building dependable software through testing, debugging, and clean product execution.
+                </h1>
                 <p className="max-w-2xl text-lg leading-8 text-[var(--soft)] sm:text-xl">
-                  From software quality assurance and automated testing to mobile apps, backend APIs, and 3D interactive systems, my work is shaped by clean execution and thoughtful problem solving.
+                  My work sits between quality assurance and development: validating features, tracking defects, automating regression checks, and building web, mobile, backend, and 3D systems with reliability in mind.
                 </p>
               </div>
               <div className="flex flex-wrap gap-4">
@@ -203,16 +206,16 @@ export default function Home() {
               </div>
               <div className="grid gap-3 sm:grid-cols-3">
                 <div className="mini-signal">
-                  <span className="mini-label">Strength</span>
-                  <span className="mini-value">QA to product delivery</span>
+                  <span className="mini-label">Core</span>
+                  <span className="mini-value">Manual and automated QA</span>
                 </div>
                 <div className="mini-signal">
-                  <span className="mini-label">Style</span>
-                  <span className="mini-value">Clean, structured, memorable</span>
+                  <span className="mini-label">Testing</span>
+                  <span className="mini-value">Playwright and Cucumber</span>
                 </div>
                 <div className="mini-signal">
-                  <span className="mini-label">Edge</span>
-                  <span className="mini-value">3D + mobile + automation</span>
+                  <span className="mini-label">Build Range</span>
+                  <span className="mini-value">Full-stack, mobile, and 3D</span>
                 </div>
               </div>
             </div>
@@ -228,12 +231,12 @@ export default function Home() {
                 </span>
               </div>
               <p className="mt-4 text-[var(--soft)]">
-                Bachelor of Science in Information Systems with a portfolio spanning QA, backend engineering, mobile product work, and interactive 3D experiences.
+                Bachelor of Science in Information Systems with hands-on experience across software QA, backend engineering, mobile product work, and interactive 3D experiences.
               </p>
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
                 <div className="stat-card">
                   <p className="stat-label">Specialties</p>
-                  <p className="stat-value">QA, Automation, Mobile, 3D</p>
+                  <p className="stat-value">QA, automation, APIs</p>
                 </div>
                 <div className="stat-card">
                   <p className="stat-label">Winning project</p>
