@@ -138,9 +138,9 @@ export default function FlashOptimizationModPage() {
         </article>
 
         <article className="project-card">
-          <p className="section-kicker">Portfolio note</p>
+          <p className="section-kicker">Note</p>
           <p className="mt-6 leading-7 text-[var(--soft)]">
-            The mod is intended to be tested locally through the standalone Flash projector for the smoothest performance. This portfolio page focuses on the technical breakdown, optimization work, and development notes.
+            The mod is intended to be tested locally through the standalone Flash projector for the smoothest performance. This page focuses on the technical breakdown, optimization work, and development notes.
           </p>
         </article>
       </section>
