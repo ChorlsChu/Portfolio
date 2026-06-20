@@ -14,7 +14,7 @@ const experience = [
       "Worked closely with cross-functional teams to translate requirements into scalable and maintainable software solutions.",
       "Participated in continuous improvement of system performance, usability, and development workflows within an enterprise healthcare context.",
     ],
-    stack: ["JavaScript", "Node.js", "Flutter", "REST API", "GitHub"],
+    stack: ["JavaScript", "Flutter", "Node.js", "Dart", "React", "Express.js", "REST API", "Git/GitHub", "Visual Studio Code", "Android Studio"],
   },
   {
     role: "Software Quality Assurance",
@@ -28,7 +28,7 @@ const experience = [
       "Built and maintained QA documentation, test cases, and checklists to improve coverage and team efficiency.",
       "Developed basic end-to-end automation with Playwright and Cucumber to support regression testing.",
     ],
-    stack: ["JavaScript", "Node.js", "Playwright", "Cucumber", "GitHub", "Google Sheets", "VS Code"],
+    stack: ["JavaScript", "Node.js", "Playwright", "Cucumber", "Git/GitHub", "Google Sheets", "Visual Studio Code"],
   },
   {
     role: "Unreal Engine Developer",
@@ -42,7 +42,7 @@ const experience = [
       "Designed and maintained RESTful APIs to support communication between client and server systems.",
       "Improved usability and performance by refining workflows across cross-functional development efforts.",
     ],
-    stack: ["Unreal Engine 5", "Next.js", "JavaScript", "Firebase", "REST API", "GitHub"],
+    stack: ["Diversion", "Unreal Engine 5", "Next.js", "JavaScript", "Firebase", "REST API", "Git/GitHub", "Visual Studio Code"],
   },
 ];
 
@@ -54,7 +54,7 @@ const projects = [
     highlight: "Current fan-made Flash mod focused on campaign expansion, boss systems, AI behavior, bug fixing, and performance cleanup.",
     description:
       "A large campaign-focused overhaul that adds boss encounters, replayable campaign levels, smarter enemy behavior, player-side toggles, and smoother runtime behavior for a Flash/AS3 game.",
-    stack: ["Flash", "ActionScript 3", "Performance Optimization", "Game Modding", "QA Testing"],
+    stack: ["Flash", "ActionScript 3", "Performance Optimization", "Game Modding", "QA Testing", "Visual Studio Code", "Git/GitHub"],
     href: "/projects/flash-optimization-mod",
   },
   {
@@ -64,7 +64,7 @@ const projects = [
     highlight: "1st place winner at UDST Skills Day Competition.",
     description:
       "A peer tutoring app that lets tutees request sessions by topic and schedule while tutors can accept or reschedule based on availability.",
-    stack: ["React Native", "Expo", "Firebase", "GitHub"],
+    stack: ["React Native", "Expo", "Firebase", "Git/GitHub", "Visual Studio Code"],
   },
   {
     name: "ThermoGuard",
@@ -73,7 +73,7 @@ const projects = [
     highlight: "Combined real-time monitoring, predictive alerts, dashboard UI, and 3D interaction.",
     description:
       "An advanced monitoring system with sensor-driven telemetry, temperature prediction, and an interactive dashboard for system status and server visualization.",
-    stack: ["JavaScript", "Node.js", "Python", "MongoDB", "Machine Learning", "GitHub"],
+    stack: ["JavaScript", "Node.js", "Python", "MongoDB", "Machine Learning", "Git/GitHub", "Visual Studio Code"],
   },
   {
     name: "Quiz App",
@@ -82,7 +82,7 @@ const projects = [
     highlight: "Focused on flexible quiz creation and a friend-based invitation flow.",
     description:
       "A collaborative quiz platform with multiple section types, custom quiz authoring, and invitation-based participation.",
-    stack: ["React Native", "Expo", "Firebase"],
+    stack: ["React Native", "Expo", "Firebase", "Visual Studio Code"],
   },
 ];
 
@@ -94,7 +94,7 @@ const earlyProjects = [
     highlight: "Built during high school and presented at Celebration of Learning.",
     description:
       "A 3D Unity game built around a ball navigation mechanic combined with a first-person obstacle course.",
-    stack: ["Unity", "C#", "VS"],
+    stack: ["Unity", "C#", "Visual Studio 2019"],
   },
 ];
 
