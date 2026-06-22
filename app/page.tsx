@@ -157,6 +157,11 @@ const profileLinks = [
     value: "linkedin.com/in/charles-tiu-69a6a9328/",
     href: "https://www.linkedin.com/in/charles-tiu-69a6a9328/",
   },
+  {
+    label: "GitHub",
+    value: "https://github.com/ChorlsChu",
+    href: "https://github.com/ChorlsChu",
+  },
 ];
 
 export default function Home() {
