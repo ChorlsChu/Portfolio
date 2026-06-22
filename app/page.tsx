@@ -159,7 +159,7 @@ const profileLinks = [
   },
   {
     label: "GitHub",
-    value: "https://github.com/ChorlsChu",
+    value: "github.com/ChorlsChu",
     href: "https://github.com/ChorlsChu",
   },
 ];
