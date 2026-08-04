@@ -1,50 +1,8 @@
 "use client";
 
-const experience = [
-  {
-    role: "Full Stack Developer",
-    company: "Afya AI",
-    location: "Doha, Qatar",
-    period: "Apr 2025 - Present",
-    points: [
-      "Developed and maintained full-stack features for a healthcare system in collaboration with Hamad Medical Corporation.",
-      "Designed and implemented backend services and RESTful APIs to support data exchange and system integration across healthcare-related modules.",
-      "Built and maintained responsive web application features using modern frontend and backend technologies.",
-      "Contributed to system reliability through debugging, testing, and validation of core functionalities across development environments.",
-      "Worked closely with cross-functional teams to translate requirements into scalable and maintainable software solutions.",
-      "Participated in continuous improvement of system performance, usability, and development workflows within an enterprise healthcare context.",
-    ],
-    stack: ["JavaScript", "Flutter", "Node.js", "Dart", "React", "Express.js", "REST API", "Git/GitHub", "Visual Studio Code", "Android Studio"],
-  },
-  {
-    role: "Software Quality Assurance",
-    company: "Edgage",
-    location: "Doha, Qatar",
-    period: "Nov 2025 - Mar 2026",
-    points: [
-      "Tested new features and enhancements before release to keep quality standards high across product updates.",
-      "Documented defects with clear reproduction steps and worked closely with developers to validate fixes.",
-      "Executed functional, regression, and compatibility testing across multiple environments and platforms.",
-      "Built and maintained QA documentation, test cases, and checklists to improve coverage and team efficiency.",
-      "Developed basic end-to-end automation with Playwright and Cucumber to support regression testing.",
-    ],
-    stack: ["JavaScript", "Node.js", "Playwright", "Cucumber", "Git/GitHub", "Google Sheets", "Visual Studio Code"],
-  },
-  {
-    role: "Unreal Engine Developer",
-    company: "Monet",
-    location: "Doha, Qatar",
-    period: "May 2025 - Aug 2025",
-    points: [
-      "Built and optimized features in Unreal Engine for interactive 3D venue planning and visualization.",
-      "Implemented multiplayer collaboration tools for real-time asset placement and user interaction.",
-      "Integrated AI-assisted workflows to speed up 3D asset creation from reference materials.",
-      "Designed and maintained RESTful APIs to support communication between client and server systems.",
-      "Improved usability and performance by refining workflows across cross-functional development efforts.",
-    ],
-    stack: ["Diversion", "Unreal Engine 5", "Next.js", "JavaScript", "Firebase", "REST API", "Git/GitHub", "Visual Studio Code"],
-  },
-];
+import { useEffect } from "react";
+import { experience } from "./experience/data";
+import Reveal from "./components/reveal";
 
 const projects = [
   {
@@ -165,13 +123,28 @@ const profileLinks = [
 ];
 
 export default function Home() {
+  useEffect(() => {
+    const header = document.querySelector<HTMLElement>(".site-header");
+    if (!header) {
+      return;
+    }
+    const handleScroll = () => {
+      header.classList.toggle("nav-scrolled", window.scrollY > 8);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <main className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
       <section className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(111,168,220,0.18),_transparent_34%),radial-gradient(circle_at_85%_15%,_rgba(236,179,101,0.16),_transparent_24%),linear-gradient(180deg,_rgba(7,16,26,0.1),_transparent)]" />
+        <div className="ambient-blob pointer-events-none absolute -left-32 top-10 h-96 w-96 rounded-full bg-[rgba(110,160,200,0.12)] blur-3xl" />
+        <div className="ambient-blob pointer-events-none absolute -right-24 top-64 h-80 w-80 rounded-full bg-[rgba(201,166,107,0.1)] blur-3xl" style={{ animationDelay: "-8s" }} />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--line-strong)] to-transparent" />
         <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col px-6 py-8 sm:px-10 lg:px-12">
-          <header className="flex flex-wrap items-center justify-between gap-4">
+          <header className="site-header flex flex-wrap items-center justify-between gap-4 rounded-xl px-4 py-3 -mx-4">
             <div>
               <p className="font-display text-lg tracking-[0.3em] text-[var(--muted)] uppercase">
                 Charles Emmanuel C. Tiu
@@ -198,44 +171,53 @@ export default function Home() {
 
           <div className="grid gap-14 py-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-start lg:py-16">
             <div className="space-y-8">
-              <div className="inline-flex items-center gap-3 rounded-full border border-[var(--line)] bg-white/5 px-4 py-2 text-sm text-[var(--muted)] shadow-[0_14px_36px_rgba(2,8,18,0.28)] backdrop-blur">
-                <span className="h-2.5 w-2.5 rounded-full bg-[var(--accent)]" />
-                Based in Doha, Qatar
-              </div>
-              <div className="space-y-6">
-                <p className="section-kicker">Software QA and full-stack developer</p>
-                <h1 className="section-title">
-                  Building dependable software through testing, debugging, and clean product execution.
-                </h1>
-                <p className="max-w-2xl text-lg leading-8 text-[var(--soft)] sm:text-xl">
-                  My work sits between quality assurance and development: validating features, tracking defects, automating regression checks, and building web, mobile, backend, and 3D systems with reliability in mind.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-4">
-                <a className="button-primary" href="/documents/CV.pdf" target="_blank" rel="noreferrer">
-                  View CV
-                </a>
-                <a className="button-secondary" href="#projects">
-                  Explore Projects
-                </a>
-              </div>
-              <div className="grid gap-3 sm:grid-cols-3">
-                <div className="mini-signal">
-                  <span className="mini-label">Core</span>
-                  <span className="mini-value">Manual and automated QA</span>
+              <Reveal>
+                <div className="inline-flex items-center gap-3 rounded-full border border-[var(--line)] bg-white/5 px-4 py-2 text-sm text-[var(--muted)] shadow-[0_14px_36px_rgba(2,8,18,0.28)] backdrop-blur">
+                  <span className="h-2.5 w-2.5 rounded-full bg-[var(--accent)]" />
+                  Based in Doha, Qatar
                 </div>
-                <div className="mini-signal">
-                  <span className="mini-label">Testing</span>
-                  <span className="mini-value">Playwright and Cucumber</span>
+              </Reveal>
+              <Reveal delay={70}>
+                <div className="space-y-6">
+                  <p className="section-kicker">Software QA and full-stack developer</p>
+                  <h1 className="section-title animated-gradient">
+                    Building dependable software through testing, debugging, and clean product execution.
+                  </h1>
+                  <p className="max-w-2xl text-lg leading-8 text-[var(--soft)] sm:text-xl">
+                    My work sits between quality assurance and development: validating features, tracking defects, automating regression checks, and building web, mobile, backend, and 3D systems with reliability in mind.
+                  </p>
                 </div>
-                <div className="mini-signal">
-                  <span className="mini-label">Build Range</span>
-                  <span className="mini-value">Full-stack, mobile, and 3D</span>
+              </Reveal>
+              <Reveal delay={140}>
+                <div className="flex flex-wrap gap-4">
+                  <a className="button-primary" href="/documents/CV.pdf" target="_blank" rel="noreferrer">
+                    View CV
+                  </a>
+                  <a className="button-secondary" href="#projects">
+                    Explore Projects
+                  </a>
                 </div>
-              </div>
+              </Reveal>
+              <Reveal delay={210}>
+                <div className="grid gap-3 sm:grid-cols-3">
+                  <div className="mini-signal">
+                    <span className="mini-label">Core</span>
+                    <span className="mini-value">Manual and automated QA</span>
+                  </div>
+                  <div className="mini-signal">
+                    <span className="mini-label">Testing</span>
+                    <span className="mini-value">Playwright and Cucumber</span>
+                  </div>
+                  <div className="mini-signal">
+                    <span className="mini-label">Build Range</span>
+                    <span className="mini-value">Full-stack, mobile, and 3D</span>
+                  </div>
+                </div>
+              </Reveal>
             </div>
 
-            <div className="glass-panel p-6 sm:p-8">
+            <Reveal delay={100}>
+              <div className="glass-panel p-6 sm:p-8">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="section-kicker">Education</p>
@@ -266,7 +248,8 @@ export default function Home() {
                   <p className="stat-value">Quality-first product building</p>
                 </div>
               </div>
-            </div>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -276,29 +259,34 @@ export default function Home() {
           <p className="section-kicker">Experience</p>
         </div>
         <div className="mt-10 grid gap-6">
-          {experience.map((item) => (
-            <article className="glass-panel grid gap-8 p-6 lg:grid-cols-[0.8fr_1.2fr]" key={item.company + item.role}>
-              <div>
-                <p className="text-sm uppercase tracking-[0.22em] text-[var(--muted)]">{item.period}</p>
-                <h3 className="mt-4 font-display text-3xl">{item.role}</h3>
-                <p className="mt-2 text-lg text-[var(--soft)]">{`${item.company} - ${item.location}`}</p>
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {item.stack.map((tool) => (
-                    <span className="tag" key={tool}>
-                      {tool}
-                    </span>
-                  ))}
+          {experience.map((item, index) => (
+            <Reveal delay={350 + index * 90} key={item.company + item.role}>
+              <article className="glass-panel grid gap-8 p-6 lg:grid-cols-[0.8fr_1.2fr]">
+                <div>
+                  <p className="text-sm uppercase tracking-[0.22em] text-[var(--muted)]">{item.period}</p>
+                  <h3 className="mt-4 font-display text-3xl">{item.role}</h3>
+                  <p className="mt-2 text-lg text-[var(--soft)]">{`${item.company} - ${item.location}`}</p>
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {item.stack.map((tool) => (
+                      <span className="tag" key={tool}>
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              <ul className="space-y-3 text-[var(--soft)]">
-                {item.points.map((point) => (
-                  <li className="flex gap-3" key={point}>
-                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[var(--accent)]" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </article>
+                <ul className="space-y-3 text-[var(--soft)]">
+                  {item.points.map((point) => (
+                    <li className="flex gap-3" key={point}>
+                      <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[var(--accent)]" />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a className="case-study-link" href={`/experience/${item.slug}`}>
+                  View case study
+                </a>
+              </article>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -308,46 +296,14 @@ export default function Home() {
           <p className="section-kicker">Projects</p>
         </div>
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {projects.map((project) => (
-            <article className="project-card" key={project.name}>
-              <div className="flex items-center justify-between gap-4">
-                <p className="text-sm uppercase tracking-[0.22em] text-[var(--muted)]">{project.type}</p>
-                <span className="text-sm text-[var(--soft)]">{project.period}</span>
-              </div>
-              <h3 className="mt-6 font-display text-3xl">{project.name}</h3>
-              <p className="mt-4 text-[var(--soft)]">{project.description}</p>
-              <p className="mt-5 rounded-2xl border border-[var(--line)] bg-white/5 p-4 text-sm text-[var(--muted)]">
-                {project.highlight}
-              </p>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {project.stack.map((tool) => (
-                  <span className="tag" key={tool}>
-                    {tool}
-                  </span>
-                ))}
-              </div>
-              {"href" in project && project.href ? (
-                <a className="case-study-link" href={project.href}>
-                  View case study
-                </a>
-              ) : null}
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-7xl px-6 pb-20 pt-0 sm:px-10 lg:px-12">
-        <div className="glass-panel p-6 sm:p-8">
-          <div className="grid gap-6">
-            {earlyProjects.map((project) => (
-              <article className="project-card" key={project.name}>
-                <div className="flex flex-wrap items-center justify-between gap-4">
-                  <div>
-                    <p className="text-sm uppercase tracking-[0.22em] text-[var(--muted)]">{project.type}</p>
-                    <h3 className="mt-3 font-display text-3xl">{project.name}</h3>
-                  </div>
+          {projects.map((project, index) => (
+            <Reveal delay={750 + index * 90} key={project.name}>
+              <article className="project-card">
+                <div className="flex items-center justify-between gap-4">
+                  <p className="text-sm uppercase tracking-[0.22em] text-[var(--muted)]">{project.type}</p>
                   <span className="text-sm text-[var(--soft)]">{project.period}</span>
                 </div>
+                <h3 className="mt-6 font-display text-3xl">{project.name}</h3>
                 <p className="mt-4 text-[var(--soft)]">{project.description}</p>
                 <p className="mt-5 rounded-2xl border border-[var(--line)] bg-white/5 p-4 text-sm text-[var(--muted)]">
                   {project.highlight}
@@ -359,7 +315,43 @@ export default function Home() {
                     </span>
                   ))}
                 </div>
+                {"href" in project && project.href ? (
+                  <a className="case-study-link" href={project.href}>
+                    View case study
+                  </a>
+                ) : null}
               </article>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-7xl px-6 pb-20 pt-0 sm:px-10 lg:px-12">
+        <div className="glass-panel p-6 sm:p-8">
+          <div className="grid gap-6">
+            {earlyProjects.map((project) => (
+              <Reveal delay={1050} key={project.name}>
+                <article className="project-card">
+                  <div className="flex flex-wrap items-center justify-between gap-4">
+                    <div>
+                      <p className="text-sm uppercase tracking-[0.22em] text-[var(--muted)]">{project.type}</p>
+                      <h3 className="mt-3 font-display text-3xl">{project.name}</h3>
+                    </div>
+                    <span className="text-sm text-[var(--soft)]">{project.period}</span>
+                  </div>
+                  <p className="mt-4 text-[var(--soft)]">{project.description}</p>
+                  <p className="mt-5 rounded-2xl border border-[var(--line)] bg-white/5 p-4 text-sm text-[var(--muted)]">
+                    {project.highlight}
+                  </p>
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {project.stack.map((tool) => (
+                      <span className="tag" key={tool}>
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -373,74 +365,80 @@ export default function Home() {
           </p>
         </div>
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {skillGroups.map((group) => (
-            <article className="skill-card" key={group.title}>
-              <h3 className="font-display text-2xl">{group.title}</h3>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <span className="tag" key={item}>
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </article>
+          {skillGroups.map((group, index) => (
+            <Reveal delay={1100 + index * 80} key={group.title}>
+              <article className="skill-card">
+                <h3 className="font-display text-2xl">{group.title}</h3>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <span className="tag" key={item}>
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            </Reveal>
           ))}
         </div>
       </section>
 
       <section className="mx-auto grid w-full max-w-7xl gap-6 px-6 py-20 sm:px-10 lg:grid-cols-[1.08fr_0.92fr] lg:px-12">
-        <article className="glass-panel p-6 sm:p-8" id="documents">
-          <p className="section-kicker">Documents</p>
-          <h2 className="mt-3 font-display text-3xl">CV and certificates</h2>
-          <div className="mt-6 space-y-3">
-            {documents.map((doc) => (
-              <a className="document-link" href={doc.href} key={doc.label} target="_blank" rel="noreferrer">
-                <span>
-                  <span className="block text-base font-medium text-[var(--text)]">{doc.label}</span>
-                  <span className="mt-1 block text-sm text-[var(--soft)]">{doc.note}</span>
-                </span>
-                <span className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">Open</span>
-              </a>
-            ))}
-          </div>
-        </article>
+        <Reveal delay={1500}>
+          <article className="glass-panel p-6 sm:p-8" id="documents">
+            <p className="section-kicker">Documents</p>
+            <h2 className="mt-3 font-display text-3xl">CV and certificates</h2>
+            <div className="mt-6 space-y-3">
+              {documents.map((doc) => (
+                <a className="document-link" href={doc.href} key={doc.label} target="_blank" rel="noreferrer">
+                  <span>
+                    <span className="block text-base font-medium text-[var(--text)]">{doc.label}</span>
+                    <span className="mt-1 block text-sm text-[var(--soft)]">{doc.note}</span>
+                  </span>
+                  <span className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">Open</span>
+                </a>
+              ))}
+            </div>
+          </article>
+        </Reveal>
 
-        <article className="glass-panel p-6 sm:p-8">
-          <p className="section-kicker">Connect</p>
-          <h2 className="mt-3 font-display text-3xl">Contact and profiles</h2>
+        <Reveal delay={1600}>
+          <article className="glass-panel p-6 sm:p-8">
+            <p className="section-kicker">Connect</p>
+            <h2 className="mt-3 font-display text-3xl">Contact and profiles</h2>
 
-          <div className="mt-8 grid gap-4">
-            <div className="info-card">
-              <p className="info-card-label">Contact</p>
-              <div className="mt-4 space-y-3">
-                {contactItems.map((item) => (
-                  <a className="profile-link" href={item.href} key={item.label}>
-                    <span>
-                      <span className="block text-sm uppercase tracking-[0.18em] text-[var(--muted)]">{item.label}</span>
-                      <span className="mt-2 block text-base font-medium text-[var(--text)]">{item.value}</span>
-                    </span>
-                    <span className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">Open</span>
-                  </a>
-                ))}
+            <div className="mt-8 grid gap-4">
+              <div className="info-card">
+                <p className="info-card-label">Contact</p>
+                <div className="mt-4 space-y-3">
+                  {contactItems.map((item) => (
+                    <a className="profile-link" href={item.href} key={item.label}>
+                      <span>
+                        <span className="block text-sm uppercase tracking-[0.18em] text-[var(--muted)]">{item.label}</span>
+                        <span className="mt-2 block text-base font-medium text-[var(--text)]">{item.value}</span>
+                      </span>
+                      <span className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">Open</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <div className="info-card">
+                <p className="info-card-label">GitHub and LinkedIn</p>
+                <div className="mt-4 space-y-3">
+                  {profileLinks.map((item) => (
+                    <a className="profile-link" href={item.href} key={item.label} target="_blank" rel="noreferrer">
+                      <span>
+                        <span className="block text-sm uppercase tracking-[0.18em] text-[var(--muted)]">{item.label}</span>
+                        <span className="mt-2 block text-base font-medium text-[var(--text)]">{item.value}</span>
+                      </span>
+                      <span className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">Visit</span>
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
-
-            <div className="info-card">
-              <p className="info-card-label">GitHub and LinkedIn</p>
-              <div className="mt-4 space-y-3">
-                {profileLinks.map((item) => (
-                  <a className="profile-link" href={item.href} key={item.label} target="_blank" rel="noreferrer">
-                    <span>
-                      <span className="block text-sm uppercase tracking-[0.18em] text-[var(--muted)]">{item.label}</span>
-                      <span className="mt-2 block text-base font-medium text-[var(--text)]">{item.value}</span>
-                    </span>
-                    <span className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">Visit</span>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </article>
+          </article>
+        </Reveal>
       </section>
     </main>
   );

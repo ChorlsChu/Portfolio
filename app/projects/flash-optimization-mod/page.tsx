@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import Reveal from "../../components/reveal";
 
 const highlights = [
   "Expanded the campaign with new boss encounters for Order and Chaos factions.",
@@ -87,117 +87,136 @@ export default function FlashOptimizationModPage() {
     <main className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
       <section className="relative overflow-hidden px-6 py-8 sm:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(111,168,220,0.18),_transparent_34%),radial-gradient(circle_at_85%_15%,_rgba(236,179,101,0.16),_transparent_24%)]" />
+        <div className="ambient-blob pointer-events-none absolute -left-24 top-12 h-80 w-80 rounded-full bg-[rgba(110,160,200,0.12)] blur-3xl" />
+        <div className="ambient-blob pointer-events-none absolute -right-20 top-56 h-72 w-72 rounded-full bg-[rgba(201,166,107,0.1)] blur-3xl" style={{ animationDelay: "-8s" }} />
         <div className="relative z-10 mx-auto w-full max-w-7xl">
-          <Link className="nav-link inline-flex text-sm text-[var(--soft)]" href="/#projects">
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- plain <a> for cross-document view transition */}
+          <a className="nav-link inline-flex text-sm text-[var(--soft)]" href="/#projects">
             Back to projects
-          </Link>
+          </a>
 
           <div className="mt-14 grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-start">
-            <div>
-              <p className="section-kicker">Current game optimization project</p>
-              <h1 className="section-title mt-5">Stick War 2: Enhanced Edition Mod</h1>
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-[var(--soft)] sm:text-xl">
-                A campaign-focused Flash/AS3 overhaul that expands boss fights, improves enemy behavior, rebalances campaign progression, adds replayable levels, and fixes bugs and performance issues from the original game.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-2">
-                {["Flash", "ActionScript 3", "Game Modding", "Performance Optimization", "QA Testing"].map((tool) => (
-                  <span className="tag" key={tool}>
-                    {tool}
-                  </span>
-                ))}
+            <Reveal>
+              <div>
+                <p className="section-kicker">Current game optimization project</p>
+                <h1 className="section-title animated-gradient mt-5">Stick War 2: Enhanced Edition Mod</h1>
+                <p className="mt-6 max-w-3xl text-lg leading-8 text-[var(--soft)] sm:text-xl">
+                  A campaign-focused Flash/AS3 overhaul that expands boss fights, improves enemy behavior, rebalances campaign progression, adds replayable levels, and fixes bugs and performance issues from the original game.
+                </p>
+                <div className="mt-8 flex flex-wrap gap-2">
+                  {["Flash", "ActionScript 3", "Game Modding", "Performance Optimization", "QA Testing"].map((tool) => (
+                    <span className="tag" key={tool}>
+                      {tool}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            </Reveal>
 
-            <aside className="glass-panel p-6 sm:p-8">
-              <p className="section-kicker">Project status</p>
-              <div className="mt-6 grid gap-4">
-                <div className="stat-card">
-                  <p className="stat-label">Timeline</p>
-                  <p className="stat-value">Mar 2026 - Present</p>
+            <Reveal delay={100}>
+              <aside className="glass-panel p-6 sm:p-8">
+                <p className="section-kicker">Project status</p>
+                <div className="mt-6 grid gap-4">
+                  <div className="stat-card">
+                    <p className="stat-label">Timeline</p>
+                    <p className="stat-value">Mar 2026 - Present</p>
+                  </div>
+                  <div className="stat-card">
+                    <p className="stat-label">Role</p>
+                    <p className="stat-value">Modding, scripting, balancing, testing</p>
+                  </div>
                 </div>
-                <div className="stat-card">
-                  <p className="stat-label">Role</p>
-                  <p className="stat-value">Modding, scripting, balancing, testing</p>
-                </div>
-              </div>
-            </aside>
+              </aside>
+            </Reveal>
           </div>
         </div>
       </section>
 
       <section className="mx-auto grid w-full max-w-7xl gap-6 px-6 py-12 sm:px-10 lg:grid-cols-3 lg:px-12">
-        <article className="project-card lg:col-span-2">
-          <p className="section-kicker">What I modded</p>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            {highlights.map((item) => (
-              <p className="rounded-2xl border border-[var(--line)] bg-white/5 p-4 text-sm leading-6 text-[var(--soft)]" key={item}>
-                {item}
-              </p>
-            ))}
-          </div>
-        </article>
+        <Reveal delay={250}>
+          <article className="project-card lg:col-span-2">
+            <p className="section-kicker">What I modded</p>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              {highlights.map((item) => (
+                <p className="rounded-2xl border border-[var(--line)] bg-white/5 p-4 text-sm leading-6 text-[var(--soft)]" key={item}>
+                  {item}
+                </p>
+              ))}
+            </div>
+          </article>
+        </Reveal>
 
-        <article className="project-card">
-          <p className="section-kicker">Note</p>
-          <p className="mt-6 leading-7 text-[var(--soft)]">
-            The mod is intended to be tested locally through the standalone Flash projector for the smoothest performance. This page focuses on the technical breakdown, optimization work, and development notes.
-          </p>
-        </article>
+        <Reveal delay={350}>
+          <article className="project-card">
+            <p className="section-kicker">Note</p>
+            <p className="mt-6 leading-7 text-[var(--soft)]">
+              The mod is intended to be tested locally through the standalone Flash projector for the smoothest performance. This page focuses on the technical breakdown, optimization work, and development notes.
+            </p>
+          </article>
+        </Reveal>
       </section>
 
       <section className="mx-auto grid w-full max-w-7xl gap-6 px-6 py-12 sm:px-10 lg:grid-cols-2 lg:px-12">
-        <article className="project-card">
-          <p className="section-kicker">Boss and campaign systems</p>
-          <div className="mt-6 space-y-3">
-            {bossSystems.map((item) => (
-              <p className="text-[var(--soft)]" key={item}>
-                {item}
-              </p>
-            ))}
-          </div>
-        </article>
+        <Reveal delay={500}>
+          <article className="project-card">
+            <p className="section-kicker">Boss and campaign systems</p>
+            <div className="mt-6 space-y-3">
+              {bossSystems.map((item) => (
+                <p className="text-[var(--soft)]" key={item}>
+                  {item}
+                </p>
+              ))}
+            </div>
+          </article>
+        </Reveal>
 
-        <article className="project-card">
-          <p className="section-kicker">Performance cleanup</p>
-          <div className="mt-6 space-y-3">
-            {optimizationNotes.map((item) => (
-              <p className="text-[var(--soft)]" key={item}>
-                {item}
-              </p>
-            ))}
-          </div>
-        </article>
+        <Reveal delay={600}>
+          <article className="project-card">
+            <p className="section-kicker">Performance cleanup</p>
+            <div className="mt-6 space-y-3">
+              {optimizationNotes.map((item) => (
+                <p className="text-[var(--soft)]" key={item}>
+                  {item}
+                </p>
+              ))}
+            </div>
+          </article>
+        </Reveal>
       </section>
 
       <section className="mx-auto grid w-full max-w-7xl gap-6 px-6 py-12 sm:px-10 lg:grid-cols-[0.88fr_1.12fr] lg:px-12">
-        <article className="project-card">
-          <p className="section-kicker">How to try it</p>
-          <p className="mt-6 leading-7 text-[var(--soft)]">
-            The mod is meant to run locally instead of inside a browser emulator, so players get the smoother Flash projector experience.
-          </p>
-          <div className="mt-6 grid gap-3">
-            <a className="download-link" href={flashPlayerDownloadUrl}>
-              Download Flash Player
-            </a>
-            <a className="download-link" href={modSwfDownloadUrl}>
-              Download mod SWF
-            </a>
-            <a className="case-study-link" href={modRepositoryUrl} target="_blank" rel="noreferrer">
-              Open setup on GitHub
-            </a>
-          </div>
-        </article>
+        <Reveal delay={800}>
+          <article className="project-card">
+            <p className="section-kicker">How to try it</p>
+            <p className="mt-6 leading-7 text-[var(--soft)]">
+              The mod is meant to run locally instead of inside a browser emulator, so players get the smoother Flash projector experience.
+            </p>
+            <div className="mt-6 grid gap-3">
+              <a className="download-link" href={flashPlayerDownloadUrl}>
+                Download Flash Player
+              </a>
+              <a className="download-link" href={modSwfDownloadUrl}>
+                Download mod SWF
+              </a>
+              <a className="case-study-link" href={modRepositoryUrl} target="_blank" rel="noreferrer">
+                Open setup on GitHub
+              </a>
+            </div>
+          </article>
+        </Reveal>
 
-        <article className="project-card">
-          <div className="grid gap-4 sm:grid-cols-2">
-            {playSteps.map((step, index) => (
-              <div className="instruction-step" key={step}>
-                <span className="instruction-step-number">{String(index + 1).padStart(2, "0")}</span>
-                <p className="text-sm leading-6 text-[var(--soft)]">{step}</p>
-              </div>
-            ))}
-          </div>
-        </article>
+        <Reveal delay={900}>
+          <article className="project-card">
+            <div className="grid gap-4 sm:grid-cols-2">
+              {playSteps.map((step, index) => (
+                <div className="instruction-step" key={step}>
+                  <span className="instruction-step-number">{String(index + 1).padStart(2, "0")}</span>
+                  <p className="text-sm leading-6 text-[var(--soft)]">{step}</p>
+                </div>
+              ))}
+            </div>
+          </article>
+        </Reveal>
       </section>
 
       <section className="mx-auto w-full max-w-7xl px-6 py-12 sm:px-10 lg:px-12">
@@ -209,59 +228,65 @@ export default function FlashOptimizationModPage() {
         </div>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {unitToggles.map((toggle) => (
-            <article className="toggle-card" key={toggle.unit}>
-              <Image
-                className="toggle-media"
-                src={toggle.media}
-                alt={toggle.alt}
-                width={960}
-                height={540}
-                unoptimized
-              />
-              <div className="p-5">
-                <p className="section-kicker">{toggle.unit}</p>
-                <dl className="mt-5 grid gap-3 text-sm">
-                  <div>
-                    <dt className="stat-label">Modes</dt>
-                    <dd className="mt-1 text-[var(--soft)]">{toggle.modes}</dd>
+          {unitToggles.map((toggle, index) => (
+            <Reveal delay={1100 + index * 90} key={toggle.unit}>
+              <article className="toggle-card">
+                <Image
+                  className="toggle-media"
+                  src={toggle.media}
+                  alt={toggle.alt}
+                  width={960}
+                  height={540}
+                  unoptimized
+                />
+                <div className="p-5">
+                  <p className="section-kicker">{toggle.unit}</p>
+                  <dl className="mt-5 grid gap-3 text-sm">
+                    <div>
+                      <dt className="stat-label">Modes</dt>
+                      <dd className="mt-1 text-[var(--soft)]">{toggle.modes}</dd>
+                    </div>
+                    <div>
+                      <dt className="stat-label">Starts as</dt>
+                      <dd className="mt-1 text-[var(--soft)]">{toggle.defaultMode}</dd>
+                    </div>
+                  </dl>
+                  <div className="mt-5 space-y-3">
+                    {toggle.details.map((detail) => (
+                      <p className="text-sm leading-6 text-[var(--soft)]" key={detail}>
+                        {detail}
+                      </p>
+                    ))}
                   </div>
-                  <div>
-                    <dt className="stat-label">Starts as</dt>
-                    <dd className="mt-1 text-[var(--soft)]">{toggle.defaultMode}</dd>
-                  </div>
-                </dl>
-                <div className="mt-5 space-y-3">
-                  {toggle.details.map((detail) => (
-                    <p className="text-sm leading-6 text-[var(--soft)]" key={detail}>
-                      {detail}
-                    </p>
-                  ))}
                 </div>
-              </div>
-            </article>
+              </article>
+            </Reveal>
           ))}
         </div>
       </section>
 
       <section className="mx-auto grid w-full max-w-7xl gap-6 px-6 py-12 sm:px-10 lg:grid-cols-[0.92fr_1.08fr] lg:px-12">
-        <article className="glass-panel p-6 sm:p-8">
-          <p className="section-kicker">QA value</p>
-          <div className="mt-6 space-y-3">
-            {qaNotes.map((item) => (
-              <p className="text-[var(--soft)]" key={item}>
-                {item}
-              </p>
-            ))}
-          </div>
-        </article>
+        <Reveal delay={1400}>
+          <article className="glass-panel p-6 sm:p-8">
+            <p className="section-kicker">QA value</p>
+            <div className="mt-6 space-y-3">
+              {qaNotes.map((item) => (
+                <p className="text-[var(--soft)]" key={item}>
+                  {item}
+                </p>
+              ))}
+            </div>
+          </article>
+        </Reveal>
 
-        <article className="glass-panel p-6 sm:p-8">
-          <p className="section-kicker">Disclaimer</p>
-          <p className="mt-6 leading-7 text-[var(--soft)]">
-            This is an unofficial fan-made mod project and is not an official Stick War release. The original Stick War 2 belongs to its respective creators. This portfolio page focuses on modding, scripting, balancing, bug fixing, testing, and optimization work.
-          </p>
-        </article>
+        <Reveal delay={1500}>
+          <article className="glass-panel p-6 sm:p-8">
+            <p className="section-kicker">Disclaimer</p>
+            <p className="mt-6 leading-7 text-[var(--soft)]">
+              This is an unofficial fan-made mod project and is not an official Stick War release. The original Stick War 2 belongs to its respective creators. This portfolio page focuses on modding, scripting, balancing, bug fixing, testing, and optimization work.
+            </p>
+          </article>
+        </Reveal>
       </section>
     </main>
   );
