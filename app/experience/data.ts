@@ -125,7 +125,12 @@ export const experience: Experience[] = [
       "Shipped a doctor and kiosk assignment console so wayfinding data stays in sync with staff and kiosk setup.",
       "Fixed timezone, shift, session, and check-in bugs that affected real booking and kiosk flows.",
     ],
-    media: [],
+    media: [
+      { src: "/experience/sehtana/map_creator_1.gif", alt: "Multi-floor map editor", caption: "Room creation" },
+      { src: "/experience/sehtana/map_creator_2.gif", alt: "Room placement and wall snapping", caption: "Room editing" },
+      { src: "/experience/sehtana/map_creator_3.gif", alt: "Map export and route preview", caption: "Connecting rooms using nodes" },
+      { src: "/experience/sehtana/map_creator_4.gif", alt: "Turn-by-turn directions preview", caption: "Turn-by-turn directions" },
+    ],
     links: [],
     disclaimer:
       "This page describes my general work and prototypes. Specific product details, internal systems, and confidential client material are intentionally not shown. Prototypes shown are simplified versions built for demonstration.",

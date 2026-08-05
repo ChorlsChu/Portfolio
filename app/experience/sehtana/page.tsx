@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import ExperienceLayout from "../experience-layout";
 import { getExperience } from "../data";
-import { discoverMedia } from "../media";
 
 export const metadata: Metadata = {
   title: "Sehtana | Experience",
@@ -16,8 +15,5 @@ export default function SehtanaExperiencePage() {
     return null;
   }
 
-  const discovered = discoverMedia("sehtana");
-  const media = discovered.length > 0 ? discovered : experience.media;
-
-  return <ExperienceLayout experience={{ ...experience, media }} />;
+  return <ExperienceLayout experience={experience} />;
 }
