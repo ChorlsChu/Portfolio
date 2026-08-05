@@ -3,5 +3,7 @@ node_modules/
 out/
 dist/
 .open-next/
+.wrangler/
+.dev.vars
 .DS_Store
 *.log
