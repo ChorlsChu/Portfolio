@@ -133,8 +133,8 @@ export default function FlashOptimizationModPage() {
       </section>
 
       <section className="mx-auto grid w-full max-w-7xl gap-6 px-6 py-12 sm:px-10 lg:grid-cols-3 lg:px-12">
-        <Reveal delay={250}>
-          <article className="project-card lg:col-span-2">
+        <Reveal delay={250} className="lg:col-span-2">
+          <article className="project-card">
             <p className="section-kicker">What I modded</p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               {highlights.map((item) => (
