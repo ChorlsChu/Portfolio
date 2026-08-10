@@ -39,7 +39,7 @@ export const experience: Experience[] = [
     role: "Full Stack Developer",
     company: "Sehtana",
     location: "Doha, Qatar",
-    period: "Apr 2025 - Present",
+    period: "Apr 2026 - Aug 2026",
     kicker: "Full-stack development on a multi-app healthcare platform",
     summary:
       "Full stack developer on a multi-app healthcare technology initiative addressing real-world clinical and operational needs identified with healthcare stakeholders. Beyond full-stack features and REST APIs, I designed and built two prototypes: an indoor navigation map that guides patients through the facility from the kiosk, and an executive analytics dashboard for hospital leadership.",
