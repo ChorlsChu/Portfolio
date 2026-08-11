@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Reveal from "../../components/reveal";
+import CaseStudyWallpaper from "../../components/case-study-wallpaper";
 
 const highlights = [
   "Expanded the campaign with new boss encounters for Order and Chaos factions.",
@@ -87,6 +88,7 @@ export default function FlashOptimizationModPage() {
   return (
     <main className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
       <section className="relative overflow-hidden px-6 py-8 sm:px-10 lg:px-12">
+        <CaseStudyWallpaper basePath="/projects/stick-war-2" />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(111,168,220,0.18),_transparent_34%),radial-gradient(circle_at_85%_15%,_rgba(236,179,101,0.16),_transparent_24%)]" />
         <div className="ambient-blob pointer-events-none absolute -left-24 top-12 h-80 w-80 rounded-full bg-[rgba(110,160,200,0.12)] blur-3xl" />
         <div className="ambient-blob pointer-events-none absolute -right-20 top-56 h-72 w-72 rounded-full bg-[rgba(201,166,107,0.1)] blur-3xl" style={{ animationDelay: "-8s" }} />
