@@ -168,12 +168,17 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
       <section className="intro-hero relative overflow-hidden">
-        <img
+        <video
           className="intro-video"
-          src="/images/intro_wallpaper.gif"
-          alt=""
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
           aria-hidden="true"
-        />
+        >
+          <source src="/wallpapers/intro_wallpaper.mp4" type="video/mp4" />
+        </video>
         <div className="intro-overlay pointer-events-none absolute inset-0" />
         <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col px-6 py-8 sm:px-10 lg:px-12">
           <header className="site-header flex flex-wrap items-center justify-end gap-4 rounded-xl px-4 py-3 -mx-4">
