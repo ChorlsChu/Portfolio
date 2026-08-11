@@ -7,7 +7,7 @@ const highlights = [
   "Improved enemy campaign behavior with stronger army advantage checks and less awkward cautious attacks.",
   "Added replayable completed levels and campaign-map access to the upgrade screen.",
   "Fixed crashes, health bar issues, spell edge cases, unit control bugs, and campaign screen problems.",
-  "Reduced lag from repeated debug overlays, campaign map updates, AI scans, and command spam.",
+  "Reduced lag from repeated campaign map updates, AI scans, and command spam.",
 ];
 
 const bossSystems = [
@@ -81,6 +81,7 @@ const flashPlayerDownloadUrl =
   "https://github.com/ChorlsChu/Stick-War-2--Enhanced-Edition-Mod-/releases/latest/download/flashplayer_32_sa.exe";
 const modSwfDownloadUrl =
   "https://github.com/ChorlsChu/Stick-War-2--Enhanced-Edition-Mod-/releases/latest/download/Stick_War_2_Upgrades.swf";
+const originalGameStoryUrl = "https://www.youtube.com/watch?v=w6q9EoFmu0w";
 
 export default function FlashOptimizationModPage() {
   return (
@@ -130,6 +131,39 @@ export default function FlashOptimizationModPage() {
             </Reveal>
           </div>
         </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-7xl px-6 py-12 sm:px-10 lg:px-12">
+        <Reveal delay={180}>
+          <article className="glass-panel overflow-hidden">
+            <div className="grid lg:grid-cols-[0.78fr_1.22fr]">
+              <div className="flex flex-col justify-between p-6 sm:p-8">
+                <div>
+                  <p className="section-kicker">Game context</p>
+                  <h2 className="mt-4 font-display text-3xl">Story behind Stick War 2</h2>
+                  <p className="mt-5 leading-7 text-[var(--soft)]">
+                    New to Stick War 2? This original-game story footage introduces the world and campaign that the Enhanced Edition Mod builds upon.
+                  </p>
+                </div>
+                <p className="mt-8 text-sm leading-6 text-[var(--muted)]">
+                  This footage is from the original game and is included only for context; it is not part of my mod work.
+                </p>
+              </div>
+              <div className="border-t border-[var(--line)] bg-black/30 lg:border-l lg:border-t-0">
+                <video className="block aspect-video w-full" controls preload="metadata">
+                  <source src="/projects/stick-war-2/stick-war-2-intro.mp4" type="video/mp4" />
+                  Your browser does not support embedded video.
+                </video>
+                <p className="border-t border-[var(--line)] px-5 py-4 text-sm text-[var(--soft)]">
+                  Source: {" "}
+                  <a className="nav-link text-[var(--muted)]" href={originalGameStoryUrl} target="_blank" rel="noreferrer">
+                    Original Stick War 2 story video on YouTube
+                  </a>
+                </p>
+              </div>
+            </div>
+          </article>
+        </Reveal>
       </section>
 
       <section className="mx-auto grid w-full max-w-7xl gap-6 px-6 py-12 sm:px-10 lg:grid-cols-3 lg:px-12">

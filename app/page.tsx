@@ -136,88 +136,84 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleAnchorClick = (event: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    event.preventDefault();
+    const target = document.getElementById(targetId);
+    if (!target) {
+      return;
+    }
+
+    const startPosition = window.scrollY;
+    const headerHeight = document.querySelector<HTMLElement>(".site-header")?.offsetHeight ?? 0;
+    const targetPosition = target.getBoundingClientRect().top + startPosition - headerHeight - 24;
+    const distance = targetPosition - startPosition;
+    const duration = Math.min(1150, Math.max(650, Math.abs(distance) * 0.45));
+    const startTime = performance.now();
+    const easeInOutCubic = (progress: number) =>
+      progress < 0.5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+    const animateScroll = (currentTime: number) => {
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      window.scrollTo({ top: startPosition + distance * easeInOutCubic(progress) });
+
+      if (progress < 1) {
+        window.requestAnimationFrame(animateScroll);
+      }
+    };
+
+    window.requestAnimationFrame(animateScroll);
+    window.history.replaceState(null, "", `#${targetId}`);
+  };
+
   return (
     <main className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
-      <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(111,168,220,0.18),_transparent_34%),radial-gradient(circle_at_85%_15%,_rgba(236,179,101,0.16),_transparent_24%),linear-gradient(180deg,_rgba(7,16,26,0.1),_transparent)]" />
-        <div className="ambient-blob pointer-events-none absolute -left-32 top-10 h-96 w-96 rounded-full bg-[rgba(110,160,200,0.12)] blur-3xl" />
-        <div className="ambient-blob pointer-events-none absolute -right-24 top-64 h-80 w-80 rounded-full bg-[rgba(201,166,107,0.1)] blur-3xl" style={{ animationDelay: "-8s" }} />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--line-strong)] to-transparent" />
+      <section className="intro-hero relative overflow-hidden">
+        <img
+          className="intro-video"
+          src="/images/intro_wallpaper.gif"
+          alt=""
+          aria-hidden="true"
+        />
+        <div className="intro-overlay pointer-events-none absolute inset-0" />
         <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col px-6 py-8 sm:px-10 lg:px-12">
-          <header className="site-header flex flex-wrap items-center justify-between gap-4 rounded-xl px-4 py-3 -mx-4">
-            <div>
-              <p className="font-display text-lg tracking-[0.3em] text-[var(--muted)] uppercase">
-                Charles Emmanuel C. Tiu
-              </p>
-              <p className="mt-2 max-w-md text-sm text-[var(--soft)]">
-                QA-focused Information Systems graduate building reliable software, tested workflows, and practical full-stack products.
-              </p>
-            </div>
+          <header className="site-header flex flex-wrap items-center justify-end gap-4 rounded-xl px-4 py-3 -mx-4">
             <nav className="flex flex-wrap gap-3 text-sm text-[var(--soft)]">
-              <a className="nav-link" href="#experience">
+              <a className="nav-link" href="#experience" onClick={(event) => handleAnchorClick(event, "experience")}>
                 Experience
               </a>
-              <a className="nav-link" href="#projects">
+              <a className="nav-link" href="#projects" onClick={(event) => handleAnchorClick(event, "projects")}>
                 Projects
               </a>
-              <a className="nav-link" href="#skills">
+              <a className="nav-link" href="#skills" onClick={(event) => handleAnchorClick(event, "skills")}>
                 Skills
               </a>
-              <a className="nav-link" href="#documents">
-                Documents
+              <a className="nav-link" href="#documents" onClick={(event) => handleAnchorClick(event, "documents")}>
+                Contacts
               </a>
             </nav>
           </header>
 
-          <div className="grid gap-14 py-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-start lg:py-16">
-            <div className="space-y-8">
-              <Reveal>
-                <div className="inline-flex items-center gap-3 rounded-full border border-[var(--line)] bg-white/5 px-4 py-2 text-sm text-[var(--muted)] shadow-[0_14px_36px_rgba(2,8,18,0.28)] backdrop-blur">
-                  <span className="h-2.5 w-2.5 rounded-full bg-[var(--accent)]" />
-                  Based in Doha, Qatar
-                </div>
-              </Reveal>
-              <Reveal delay={70}>
-                <div className="space-y-6">
-                  <p className="section-kicker">Software QA and full-stack developer</p>
-                  <h1 className="section-title animated-gradient">
-                    Building dependable software through testing, debugging, and clean product execution.
-                  </h1>
-                  <p className="max-w-2xl text-lg leading-8 text-[var(--soft)] sm:text-xl">
-                    My work sits between quality assurance and development: validating features, tracking defects, automating regression checks, and building web, mobile, backend, and 3D systems with reliability in mind.
-                  </p>
-                </div>
-              </Reveal>
-              <Reveal delay={140}>
-                <div className="flex flex-wrap gap-4">
-                  <a className="button-primary" href="/documents/CV.pdf" target="_blank" rel="noreferrer">
-                    View CV
-                  </a>
-                  <a className="button-secondary" href="#projects">
-                    Explore Projects
-                  </a>
-                </div>
-              </Reveal>
-              <Reveal delay={210}>
-                <div className="grid gap-3 sm:grid-cols-3">
-                  <div className="mini-signal">
-                    <span className="mini-label">Core</span>
-                    <span className="mini-value">Manual and automated QA</span>
-                  </div>
-                  <div className="mini-signal">
-                    <span className="mini-label">Testing</span>
-                    <span className="mini-value">Playwright and Cucumber</span>
-                  </div>
-                  <div className="mini-signal">
-                    <span className="mini-label">Build Range</span>
-                    <span className="mini-value">Full-stack, mobile, and 3D</span>
-                  </div>
-                </div>
-              </Reveal>
-            </div>
+          <div className="intro-content flex flex-1 items-center justify-center py-16 text-center sm:py-20">
+            <Reveal>
+              <div id="top">
+                <p className="section-kicker">Based in Doha, Qatar</p>
+                <h1 className="intro-name mt-5">Charles Emmanuel Tiu</h1>
+                <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-[var(--text)] sm:text-xl">
+                  Full Stack Developer & Software Engineer, passionate about building web and mobile experiences, solving problems through technology, and turning ideas into practical solutions.
+                </p>
+                <a className="scroll-prompt mt-14" href="#education" onClick={(event) => handleAnchorClick(event, "education")}>
+                  <span>Scroll to explore</span>
+                  <span aria-hidden="true">↓</span>
+                </a>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
 
-            <Reveal delay={100}>
-              <div className="glass-panel p-6 sm:p-8">
+      <section className="mx-auto w-full max-w-7xl px-6 py-20 sm:px-10 lg:px-12" id="education">
+        <Reveal>
+          <div className="glass-panel p-6 sm:p-8">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="section-kicker">Education</p>
@@ -233,7 +229,7 @@ export default function Home() {
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
                 <div className="stat-card">
                   <p className="stat-label">Specialties</p>
-                  <p className="stat-value">QA, automation, APIs</p>
+                  <p className="stat-value">Development, APIs, QA, automation</p>
                 </div>
                 <div className="stat-card">
                   <p className="stat-label">Winning project</p>
@@ -248,10 +244,8 @@ export default function Home() {
                   <p className="stat-value">Quality-first product building</p>
                 </div>
               </div>
-              </div>
-            </Reveal>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       <section className="mx-auto w-full max-w-7xl px-6 py-20 sm:px-10 lg:px-12" id="experience">

@@ -21,6 +21,10 @@ html {
   scroll-behavior: smooth;
 }
 
+[id] {
+  scroll-margin-top: 5.5rem;
+}
+
 body {
   margin: 0;
   background:
@@ -43,6 +47,62 @@ a {
 
 .font-display {
   font-family: var(--font-display), sans-serif;
+}
+
+.intro-hero {
+  isolation: isolate;
+  background: #070a12;
+}
+
+.intro-video {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.intro-overlay {
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(4, 8, 17, 0.65) 0%, rgba(5, 8, 18, 0.34) 42%, rgba(8, 16, 22, 0.96) 100%),
+    linear-gradient(90deg, rgba(5, 8, 18, 0.2), transparent 50%, rgba(5, 8, 18, 0.2));
+}
+
+.intro-name {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(3rem, 8vw, 7.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.065em;
+  text-wrap: balance;
+  text-shadow: 0 6px 38px rgba(0, 0, 0, 0.68);
+}
+
+.scroll-prompt {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.scroll-prompt span:last-child {
+  font-size: 1.3rem;
+  line-height: 1;
+  animation: scroll-bob 1.8s ease-in-out infinite;
+}
+
+.scroll-prompt:hover,
+.scroll-prompt:focus-visible {
+  color: var(--text);
+  transform: translateY(2px);
 }
 
 .glass-panel {
@@ -324,6 +384,16 @@ a {
   }
   50% {
     background-position: 100% 50%;
+  }
+}
+
+@keyframes scroll-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(7px);
   }
 }
 
