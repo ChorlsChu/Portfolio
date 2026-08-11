@@ -150,10 +150,14 @@ export default function FlashOptimizationModPage() {
                 </p>
               </div>
               <div className="border-t border-[var(--line)] bg-black/30 lg:border-l lg:border-t-0">
-                <video className="block aspect-video w-full" controls preload="metadata">
-                  <source src="/projects/stick-war-2/stick-war-2-intro.mp4" type="video/mp4" />
-                  Your browser does not support embedded video.
-                </video>
+                <iframe
+                  className="block aspect-video w-full"
+                  src="https://www.youtube-nocookie.com/embed/w6q9EoFmu0w"
+                  title="Original Stick War 2 story video"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
                 <p className="border-t border-[var(--line)] px-5 py-4 text-sm text-[var(--soft)]">
                   Source: {" "}
                   <a className="nav-link text-[var(--muted)]" href={originalGameStoryUrl} target="_blank" rel="noreferrer">
