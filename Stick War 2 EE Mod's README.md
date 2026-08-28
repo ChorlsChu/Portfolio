@@ -1,0 +1,413 @@
+# Stick War 2: Enhanced Edition Mod
+
+`Stick War 2: Enhanced Edition Mod` is a campaign-focused overhaul of `Stick War 2` that expands boss fights, improves enemy behavior, adds new level events, rebalances campaign progression, replayable levels and fixes several bugs/performance issues from the original game.
+
+This mod is built for players who want the original campaign to feel more dramatic, more reactive, and more boss-heavy while still keeping the classic Stick War 2 feel.
+
+![Thumbnail](thumbnail.jpg)
+
+## How to Play
+
+1. Open `flashplayer_32_sa.exe`, or any standalone Flash Player projector.
+2. Drag `Stick_War_2_Upgrades.swf` into the Flash Player window.
+3. Start a campaign and play normally.
+
+Modern browsers usually cannot run Flash content directly, so the standalone projector is recommended.
+
+## Main Features
+
+- Expanded campaign boss encounters for both Order and Chaos factions.
+- New Chaos boss reinforcements in their own levels and in `Medusa's Gates`.
+- Smarter campaign enemy AI with better army advantage checks and less awkward cautious attacks.
+- Campaign reinforcements with temporary statue protection to prevent instant wave deletion.
+- New boss abilities, passives, cosmetics, and phase behavior.
+- Player-side toggles for Archidons, Shadowraths, and Magikill.
+- Intro video now plays directly on the intro screen instead of only showing a link.
+- Finished campaigns can replay completed levels from the campaign map.
+- Upgrade screen is accessible directly from the campaign map.
+- Reworked Medusa final boss encounter with stronger phases and summons.
+- Bug fixes for crashes, spell edge cases, health bars, unit control, and campaign screens.
+- Performance cleanup for campaign map updates, AI scans, and repeated logic.
+- Added soundtracks used from Stick War 1.
+
+## Boss Roster
+
+### Order Bosses
+
+- `Spearton Boss`
+  - Uses `Shield Wall` and `Shield Bash`.
+  - Commands nearby Speartons to brace with him.
+  - Shield Wall deflects 15% of incoming arrows while blocking.
+- `Archidon Boss`
+  - Uses `Fire Arrows`,`Arrow Storm`, `Triple Shot` and `Explosive Arrow`
+  - Commands nearby Archidons to use `Fire Arrows` and `Arrow Storm`.
+  - Can retreat and regroup with extra archers.
+- `Shadowrath Boss`
+  - Uses special boss cloak behavior.
+  - Can chain cloak after successful attacks.
+  - Flanks and targets supporting units when using special boss cloak.
+  - Uses Clone to overwhelm the target
+- `Magikill Boss`
+  - Spell Changes.
+  - Summons Swordwraths, Speartons, and Archidons.
+  - Protects the enemy statue with a temporary ward until death.
+- `Meric Boss`
+  - Can revive fallen allies.
+  - Prioritizes MagiKill Boss when reviving.
+
+### Chaos Bosses
+
+- `JuggerKnight Boss`
+  - Uses boss-style charge pressure and enhanced durability.
+  - Commands nearby JuggerKnights to charge with him.
+  - Charge deflects 100% of incoming arrows while active.
+- `Wingidon Boss`
+  - Uses `Eclipse Mark`, `Demon Burst Fire`, and `Sky Commander Aura`.
+  - Can direct nearby Wingidons toward marked targets.
+  - Sky Commander Aura deflects 100% of incoming arrows while active.
+- `Skelator / Marrowkai Boss`
+  - Uses `Dead Rising`, `Poison Fists`, and `Reaper Control`.
+  - Summons limited Deads during low-health distancing phase.
+  - Reaper-controlled units can temporarily attack their own allies.
+  - Has poison immunity and poison deathburst behavior.
+- `Medusa Boss`
+  - Final boss version has stronger health, attacks, summons, and phase pressure.
+  - `Look At Me` turns all units that faces her into stone.
+
+## Boss Abilities
+
+### Spearton Boss
+
+- `Shield and Bash`
+  - Uses Shield Wall and Shield bash that stuns enemies that got hit.
+  - Can command nearby Speartons to Shield and Bash with him
+  - Shield Wall deflects 15% of arrows while blocking.
+
+### Archidon Boss
+
+- `Arrow Storm`
+  - Fires a Blue glowing arrow that slows down enemies that got it.
+  - Can command nearby Archidons to fire arrow storm with him.
+- `Fire Arrows`
+  - Shoots one fire arrow that does more damage.
+  - Can command nearby Archidons to shoot fire arrows him.
+- `Triple Shot`
+  - Fires three arrows in a spread direction.
+- `Explosive Arrow`
+  - Fires an explosive arrow that explodes on impact damaging enemies in the area.
+
+### Shadowrath Boss
+
+- `Cloak 3`
+  - Cloaks that last 12 seconds and same damage as Cloak 1.
+  - Each successful hit can immediately cloaks again but this time same damage as Cloak 2 but lasts 1.5 seconds.
+  - Flanks and targets supporting units (Archers, Merics, Magikills, Enslaved Giants)
+  - When Cloak 3 fails, retreats back behind the front line and attacks again to avoid being crowded and easily killed by player unit army
+- Note: was thinking of adding clone ability but this Cloak 3 is already powerful enough i think
+- `Clone`
+  - Spawns 2 Clones to overwhelmed the target
+  - Clones will try to target the Shadowrath Boss's target.
+  - Has 2 seconds spawn protection
+  - Vanishes when hit once after spawn protection.
+
+### Shadowrath Level
+
+- `Disguise`
+  - Shadowraths can disguise themselves as a miner to lure enemies thinking they are vulnerable and ambushes them.
+
+### MagiKill Boss
+
+- `Meteor Chain`
+  - Summoning a meteor will now chain along with 2 more meteors with only 70% damage of the default meteor spell
+- `Lightning Wall Stun`
+  - Lightning wall does low damage but stuns enemies for a while
+- `Summoning`
+  - Can summon a list of units:
+  - `Spearton` Max 3
+  - `Swordwrath` Max 2
+  - `Archidon` Max 2
+
+### Wingidon Boss
+
+- `Eclipse Mark`
+  - Fires a special marking arrow.
+  - Marked units take bonus damage from the next Wingidon/Eclipsor projectile.
+  - Nearby Wingidons can be encouraged to focus the marked target.
+- `Demon Burst Fire`
+  - Fires a short burst of arrows.
+  - Hit units are stunned briefly.
+- `Sky Commander Aura`
+  - Temporarily empowers nearby enemy Wingidons.
+  - Deflects all incoming arrows while active.
+  - Boss glows while the aura is active.
+
+### Skelator / Marrowkai Boss
+
+- `Dead Rising`
+  - Available below 50% health.
+  - Summons Deads beside the boss(Max 2).
+- `Poison Fists`
+  - Skeletal fists poison units they hit.
+  - Poison fist visuals are attached to the fist impact.
+- `Reaper Control`
+  - Temporarily controls a struck enemy unit to attack its own allies.
+  - Controlled units cannot be selected by the player.
+  - Controlled Magikill can cast spells against its own allies.
+
+### Medusa Final Boss
+
+- `Look at Me`
+  - All units facing at her in her turns into stone.
+  - Can be avoided by looking away(Reaction time you have to look away is based on what difficulty you play in).
+
+### New Unit: Undead
+- Same as Deads but they are Melee unit type and Same HP as Archidon
+- Has Multiple Variants: 
+    - Undead Spearton - More HP but slightly slower
+    - Undead Shadowrath - Slightly faster
+    - Undead Magikill - Each hit has a chance of adding Infection Spray that infect units in an area
+    - Undead Archer - Just for Design :)
+- Each melee hit has a chance to inflict Infection effect that can only be cured by garrison.
+- When a unit is killed by Infection or Undead's Melee attack, will turn into an Undead as well based on what unit(for example: Spearton killed by infection, turns into Undead Spearton)
+
+## Campaign Changes
+
+- Bosses appear in their own campaign levels.
+- Chaos bosses also appear through reinforcements in `Medusa's Gates`.
+- Several boss levels reward extra campaign points.
+- Ambush levels added.
+- `Rebels United` is built as a major multi-boss rebel encounter.
+- `Medusa's Gates` now includes heavier Chaos Empire pressure.
+- The final Medusa battle has improved pacing, music transitions, summons, and boss mechanics.
+- The campaign intro now uses the embedded intro video on the intro screen.
+- After finishing the campaign, completed levels can be replayed from the campaign map.
+- The upgrade screen can now be opened from the campaign map.
+
+Difficulty affects more than basic enemy strength in this mod:
+- `Normal`
+  - Recommended for a first playthrough.
+  - Boss fights are still stronger than the original game, but more forgiving.
+- `Hard`
+  - Enemy waves and boss pressure are stronger.
+  - Reinforcement timing and army pressure are less forgiving.
+- `Insane`
+  - Intended for players who already know the campaign.
+  - Bosses, reinforcements, and enemy pressure are at their most punishing.
+
+Some boss encounters and reinforcement waves scale by difficulty, so the campaign may feel noticeably different between modes.
+
+### Boss Ability Queue
+
+In levels like Rebels United(Westwind) where you fight all bosses at once, only up to 3 bosses can use special abilities at the same time. The active queue lasts 10 seconds, then rotates to another set of bosses. Bosses outside the queue still attack normally, but their special abilities are temporarily paused. This keeps fights balanced, readable, and less performance-heavy.
+
+Boss selection uses fair weighted randomness. On the first wave, all living bosses have an equal chance to be selected. After a boss is selected, its chance is lowered for the next queue, while bosses that were not selected become more likely to rotate in later. This keeps ability usage varied without letting every boss spam abilities at once.
+
+## Ambush Levels
+
+Ambush levels are survival-based encounters where you defend against timed enemy waves until reinforcements arrive. You cannot push past the barrier, and fog of war hides the enemy base.
+
+### Ambush: Native Tribes
+Scattered native tribes attack from the hills with Speartons and Swordwraths wielding tribal weapons. They have reduced health but come in large numbers across 5 waves. After 150 seconds, reinforcements arrive to help you finish the fight.
+
+### Ambush: Shadowrath Stalkers
+Assassins emerge from the dark under a night overlay. Shadowraths stalk your position and unlock cloak ability after 90 seconds, becoming invisible as they approach the barrier. 5 waves of increasing pressure.
+
+### Ambush: Rebels Last Stand
+The rebels gather everything they have for one final push. An opening cutscene reveals their full army before a single massive wave attacks. After defeating them, an ending cutscene shows rebels being intercepted by chaos forces.
+
+### Ambush: Undead Horde
+The undead pour across the battlefield in a poisoned swarm. An opening cutscene shows a Marrowkai raising the dead. 4 waves of Undead variants (Spearton, Archer, Ninja, Magikill) followed by a 400 HP Marrowkai boss. Units can be infected — only garrison cures infection.
+
+### Ambush: The Storm
+Rain and lightning obscure the battlefield. Enemy units are only visible during thunder flashes. Stoned unit decorations litter the map. 6 waves with breathing periods between them, featuring Cats, Knights, Dead, Undead, Skelators, Wingidons, and Giants.
+
+**Common mechanics:**
+- Fog of war locks forward vision to a barrier line
+- Player units cannot cross the barrier
+- Reinforcements spawn after surviving ~150 seconds
+- Win by surviving all waves and eliminating enemy combat units
+- Wave sizes scale with difficulty (Normal / Hard / Insane)
+
+## Playable Bosses
+
+Unlock boss units through the upgrade tree and toggle **Boss Mode** to produce them instead of regular units. See the Boss Roster and Boss Abilities sections for full ability details.
+
+### Boss Mode Rules
+- Toggle Boss Mode on/off during gameplay (`,` key or click the toggle button)
+- Only boss units can be produced while active
+- Maximum of 3 bosses alive at once
+- Only 1 boss of each type at a time
+- Bosses have different gold/mana costs than regular units
+
+### Boss Upgrade Tree
+
+**Unlock path:**
+- **Spearos**
+- **Archis**
+- **Shade**
+- **Vitalis**
+- **Magis**
+
+**Ability upgrades** branch off from each boss unlock (Triple Shot, Arrow Storm, Explosive Arrow, Shinobi III, Lightning Stun, Meteor II, Summon II, etc.).
+
+## Unit Toggles
+
+![MagiKill Cast](gifs/magikill.gif)
+- `Magikill Autocast`
+  - Cycle between `Auto Cast`, `Meteor Only`, and `Disabled Autocast`.
+  - Magikill starts with autocast disabled.
+
+There are two types of Autocast:
+ - `Attack Autocast`
+   - Pushes forward if no enemies in spell range all the way to melee close range.
+   - Uses if on AttackMove command
+ - `Defend Autocast`
+   - Basically Hold Command but uses spells if enemy in range but does not push.
+   - Used if on Hold command or defend base
+
+Note: Autocast will be pick a spell by weight randomness to make it more dynamic and less strict on spell priority:
+`Meteor`- 5
+`Lightning` - 3
+`Poison` - 2
+
+
+![Archer Kite](gifs/archidon.gif)
+- `Archidon Auto Kite`
+  - Toggle between `Auto Kite` and `Manual Positioning`.
+  - Archidons start in `Manual Positioning`.
+
+![Shadowrath Cloak](gifs/shadowrath.gif)
+- `Shadowrath Auto Cloak`
+  - Toggle between `Auto Cloak` and `Manual Cloak`.
+  - Shadowraths start in `Manual Cloak`.
+
+## Controls
+
+- `Z` - Scroll camera left
+- `C` - Scroll camera right
+- `F` - Toggle fast forward
+- `P` or `Esc` - Pause
+- `Space` - Select all non-miner units
+- Double-tap `Space` - Jump camera to your forward unit
+- `Tab` - Cycle selected unit type
+- `D` - Move selected units
+- `A` - Attack move selected units
+- `H` - Hold/defend position
+- `S` - Stop/cancel current command
+- `G` - Garrison selected units
+- `G` while selecting garrisoned units - Ungarrison selected units
+- `U` - Select full-health garrisoned units
+- `I` - Select all garrisoned units
+- `V` - Command all units to garrison
+- `B` - Command all units to defend
+- `N` - Command all units to attack
+- `J` - Select poisoned units
+
+## Optional Debug Keybinds
+
+Debug mode is included for testing, screenshots, and messing around after finishing the campaign. All debug hotkeys require holding `Shift`.
+
+### General Debug
+
+- `Shift + F9` - Toggle debug mode on/off
+- `Shift + F8` - Toggle full vision
+- `Shift + F6` - Switch debug spawn set to `Order`
+- `Shift + F7` - Switch debug spawn set to `Chaos`
+- `Shift + 0` - Kill all enemy non-statue units and lock enemy unit training
+
+### Order Debug Set
+
+- `Shift + F1` - Spawn enemy Spearton Boss
+- `Shift + F2` - Spawn enemy Archidon Boss
+- `Shift + F3` - Spawn enemy Shadowrath Boss
+- `Shift + F4` - Spawn enemy Magikill Boss
+- `Shift + F5` - Spawn enemy Meric Boss
+- `Shift + 1` - Spawn allied Spearton
+- `Shift + 2` - Spawn allied Archidons
+- `Shift + 3` - Spawn allied Magikill + Meric
+- `Shift + 4` - Spawn allied Enslaved Giant
+- `Shift + 5` - Spawn allied Shadowrath
+- `Shift + 6` - Spawn enemy Spearton
+- `Shift + 7` - Spawn enemy Archidons
+- `Shift + 8` - Spawn enemy Shadowrath
+- `Shift + 9` - Spawn enemy Magikill + Meric
+
+### Chaos Debug Set
+
+- `Shift + F1` - Spawn enemy Knight Boss
+- `Shift + F2` - Spawn enemy Wingidon Boss
+- `Shift + F3` - Spawn enemy Skelator / Marrowkai Boss
+- `Shift + F4` - Spawn player-owned boss lineup for thumbnails/screenshots
+- `Shift + 1` - Spawn enemy Knight
+- `Shift + 2` - Spawn enemy Dead
+- `Shift + 3` - Spawn enemy Wingidon
+- `Shift + 4` - Spawn enemy Skelator / Marrowkai
+- `Shift + 5` - Spawn enemy Medusa
+- `Shift + 6` - Damage enemy statue by `250`
+
+## AI Improvements
+
+- Enemy campaign strategy now reacts better to army advantage and disadvantage.
+- Hidden Shadowrath forces are counted more intelligently.
+- Shadowrath disguise/trap behavior is more coordinated.
+- Boss support units stay more relevant around their boss.
+- Enemy reinforcements are less likely to be instantly deleted on spawn.
+- Expensive AI scans were reduced or cached where possible.
+
+## Bug Fixes and Polish
+
+- Fixed multiple boss health bar issues caused by damage-reduction-only stat changes.
+- Fixed Reaper Control cleanup so units return to normal after control ends.
+- Fixed Reaper-controlled units hitting flying units when they should not.
+- Fixed Magikill friendly-fire spell behavior while Reaper-controlled.
+- Fixed Poison Fists behavior so the fist hit applies poison while the effect stays visual.
+- Fixed campaign map update logic and prewarm behavior.
+- Fixed several Shadowrath disguise edge cases.
+- Fixed startup intro loading errors by handling failed intro loads safely.
+
+## Performance Notes
+
+This mod includes a lot of new boss logic, but several heavy debug and repeated-update systems were removed or reduced before release:
+
+- Reduced repeated AI target scans through caching.
+- Reduced repeated campaign map UI updates.
+- Reduced repeated tutorial/enemy command spam.
+
+Normal debug keybind checks are lightweight and only run deeper checks while `Shift` is held.
+
+## Music Notes
+
+Campaign levels use a mix of:
+
+- `battleOfTheShadowElves`
+- `enteringTheStronghold`
+- `chaosInGame`
+- `fieldOfMemories`
+
+The final Medusa level starts with `battleOfTheShadowElves` and later switches to `fieldOfMemories` during the true boss fight.
+
+## Requirements
+
+- Windows is recommended.
+- Standalone Flash Player projector is required.
+- Included projector: `flashplayer_32_sa.exe`
+- Game file: `Stick_War_2_Upgrades.swf`
+
+## Notes for Players
+
+- This is a campaign overhaul, not a full new game.
+- Some encounters are intentionally harder than the original campaign.
+- Boss fights are designed around pressure, reinforcements, and phase behavior.
+- If something feels unusually broken, save your file and report the level, difficulty, and what happened.
+
+## Credits
+
+- Original `Stick War 2` by its original creators.
+- Enhanced Edition Mod by ChorlsChu / Charles.
+- Modding, scripting, balance changes, boss design, bug fixing, and testing were built on top of the original Flash/AS3 project.
+
+## Disclaimer
+
+This is a fan-made mod project. It is not an official Stick War release.
+
+And yes, formal commits were absolutely forgotten along the way. Oopsies.

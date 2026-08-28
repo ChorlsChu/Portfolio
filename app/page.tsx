@@ -13,7 +13,7 @@ const projects = [
     description:
       "A large campaign-focused overhaul that adds boss encounters, replayable campaign levels, smarter enemy behavior, player-side toggles, and smoother runtime behavior for a Flash/AS3 game.",
     stack: ["Flash", "ActionScript 3", "Performance Optimization", "Game Modding", "QA Testing", "Visual Studio Code", "Git/GitHub"],
-    href: "/projects/flash-optimization-mod",
+    href: "/projects/enhanced-edition-mod",
   },
   {
     name: "Sensei",
