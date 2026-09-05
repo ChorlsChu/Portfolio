@@ -6,6 +6,16 @@ import Reveal from "./components/reveal";
 
 const projects = [
   {
+    name: "Sifu Modding - Moveset Maker",
+    type: "Modding tool / Moveset editor",
+    period: "Aug 2026 - Present",
+    highlight: "WPF .NET 10 moveset editor with Three.js 3D skeleton viewer and Unreal Engine asset parsing",
+    description:
+      "A C# WPF modding tool for Sifu that allows creating and editing character movesets. Features include animation parsing, skeleton visualization via Three.js, stance generation/patching, and Unreal Engine .uasset/.uexp asset handling via CUE4Parse.",
+    stack: ["C#", ".NET 10", "WPF", "Three.js", "CUE4Parse", "UAssetAPI", "Newtonsoft.Json"],
+    href: "/projects/sifu-moveset-editor",
+  },
+  {
     name: "Stick War 2: Enhanced Edition Mod",
     type: "Campaign overhaul and optimization mod",
     period: "Mar 2026 - Present",
@@ -41,7 +51,7 @@ const projects = [
     description:
       "A collaborative quiz platform with multiple section types, custom quiz authoring, and invitation-based participation.",
     stack: ["React Native", "Expo", "Firebase", "Visual Studio Code"],
-  },
+  }
 ];
 
 const earlyProjects = [
