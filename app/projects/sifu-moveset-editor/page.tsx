@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import Reveal from "../../components/reveal";
 import CaseStudyWallpaper from "../../components/case-study-wallpaper";
 
@@ -245,7 +244,7 @@ export default function SifuMovesetEditorPage() {
                   <div>
                     <p className="stat-label">Problem</p>
                     <p className="mt-3 leading-7 text-[var(--soft)]">
-                      Sifu's animation and character data lives inside Unreal
+                      Sifu&#39;s animation and character data lives inside Unreal
                       Engine assets that are not designed around a convenient
                       modding workflow.
                     </p>
@@ -335,7 +334,7 @@ export default function SifuMovesetEditorPage() {
             </h2>
 
             <p className="mt-5 leading-7 text-[var(--soft)]">
-              The tool sits between a desktop editing interface and the game's
+              The tool sits between a desktop editing interface and the game&#39;s
               underlying Unreal Engine data. Each technology handles a
               different part of that pipeline.
             </p>
@@ -671,7 +670,7 @@ export default function SifuMovesetEditorPage() {
                 <p className="stat-label">Iteration</p>
                 <p className="mt-2 text-sm leading-6 text-[var(--soft)]">
                   Repeatedly testing generated data inside the actual game to
-                  validate the tool's output.
+                  validate the tool&#39;s output.
                 </p>
               </div>
             </div>
