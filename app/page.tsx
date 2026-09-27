@@ -6,13 +6,13 @@ import Reveal from "./components/reveal";
 
 const projects = [
   {
-    name: "Sifu Modding - Moveset Maker",
+    name: "Sifu Custom Moveset Maker",
     type: "Modding tool / Moveset editor",
     period: "Aug 2026 - Present",
-    highlight: "WPF .NET 10 moveset editor with Three.js 3D skeleton viewer and Unreal Engine asset parsing",
+    highlight: "Released WPF .NET 10 modding tool with an interactive combo tree editor, Three.js 3D animation viewer, and one-click pak export.",
     description:
-      "A C# WPF modding tool for Sifu that allows creating and editing character movesets. Features include animation parsing, skeleton visualization via Three.js, stance generation/patching, and Unreal Engine .uasset/.uexp asset handling via CUE4Parse.",
-    stack: ["C#", ".NET 10", "WPF", "Three.js", "CUE4Parse", "UAssetAPI", "Newtonsoft.Json"],
+      "A C# WPF modding tool for Sifu that lets you edit combo trees for the player, enemies, and bosses. Features include drag-and-drop animation swapping, unit property and attack tuning, 12 stances, auto-extraction of game assets, and UE4 pak export/import via UnrealPak.",
+    stack: ["C#", ".NET 10", "WPF", "Three.js", "CUE4Parse", "UAssetAPI", "Newtonsoft.Json", "UnrealPak"],
     href: "/projects/sifu-moveset-editor",
   },
   {
