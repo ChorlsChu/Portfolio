@@ -1,11 +1,11 @@
 "use client";
 
-import { createElement, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ElementType, type ReactNode } from "react";
 
 type RevealTag = "div" | "section" | "article" | "li" | "figure";
 
 type RevealProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   as?: RevealTag;
   delay?: number;
   onLoad?: boolean;
@@ -47,12 +47,17 @@ export default function Reveal({
     return () => observer.disconnect();
   }, [onLoad, delay]);
 
-  return createElement(
-    as,
-    {
-      ref,
-      className: `reveal${visible ? " reveal-visible" : ""}${className ? ` ${className}` : ""}`,
-    },
-    children
+  // eslint-config-next 16 (React Compiler rules) flags passing a ref object into
+  // `createElement`: it cannot prove the value is not read during render. A
+  // capitalised element variable renders identically and keeps the ref in JSX.
+  const Tag = as as ElementType;
+
+  return (
+    <Tag
+      ref={ref}
+      className={`reveal${visible ? " reveal-visible" : ""}${className ? ` ${className}` : ""}`}
+    >
+      {children}
+    </Tag>
   );
 }

@@ -29,11 +29,11 @@ Four things have to exist first - the build fails without them.
 
 ### Build command
 
-`@opennextjs/cloudflare` refuses to build Next.js 15 (out of support since Oct 2026),
-so the build must pass `--dangerouslyUseUnsupportedNextVersion`. `npm run deploy` and
-`npm run cf-build` already do. If the dashboard runs its own command instead of
-`npm run deploy`, give it `npm run cf-build` (build step) and `npx wrangler deploy`
-(deploy step). Upgrading to Next 16 is the real fix.
+Cloudflare runs `npx @opennextjs/cloudflare build` (configured in the dashboard, not in
+`package.json`). The app is on Next.js 16, which OpenNext supports, so no flags are
+needed. If a future Next upgrade lands outside its support window,
+`@opennextjs/cloudflare` fails the build on purpose — upgrade rather than reaching for
+`--dangerouslyUseUnsupportedNextVersion`.
 
 ## Unlocking and rotating
 
