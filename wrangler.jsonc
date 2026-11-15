@@ -10,5 +10,20 @@
   },
   "observability": {
     "enabled": true
-  }
+  },
+  // The site is served from the custom domain only. Leaving workers.dev or
+  // preview URLs enabled would publish the same worker on hostnames that do not
+  // sit behind the /admin guard's expected host, so both stay off.
+  "workers_dev": false,
+  "preview_urls": false,
+  // Bug report inbox. Create it with: npx wrangler d1 create portfolio-inbox
+  // then paste the returned id here.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "portfolio-inbox",
+      "database_id": "REPLACE_WITH_DATABASE_ID",
+      "migrations_dir": "migrations"
+    }
+  ]
 }
