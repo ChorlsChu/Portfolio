@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "portfolio",
+  "name": "charlestiuportfolio",
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-04-27",
   "compatibility_flags": ["nodejs_compat"],
@@ -17,12 +17,12 @@
   "workers_dev": false,
   "preview_urls": false,
   // Bug report inbox. Create it with: npx wrangler d1 create portfolio-inbox
-  // then paste the returned id here.
+  // then apply the schema: npx wrangler d1 migrations apply DB --remote
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "portfolio-inbox",
-      "database_id": "REPLACE_WITH_DATABASE_ID",
+      "database_id": "cf68374b-8629-4132-98dd-8145fb0a6818",
       "migrations_dir": "migrations"
     }
   ]
