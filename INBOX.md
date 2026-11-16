@@ -10,8 +10,12 @@ password-style admin page for reading them.
 
 ## Setup
 
-`scripts/inbox-setup.ps1` does the whole thing, and is safe to re-run: with no
-switches it only reports, and it never rotates unless asked.
+`scripts/inbox-setup.cmd` is the double-clickable front end. No arguments pops a menu
+(status / new unlock link / open inbox); with arguments it passes them straight to
+`scripts/inbox-setup.ps1`, which holds all the logic and is safe to re-run: with no
+switches it only reports, and it never rotates unless asked. The `.cmd` exists because
+Windows opens a `.ps1` in Notepad on double-click, and even "Run with PowerShell"
+closes the window before a one-time link can be copied.
 
 ```powershell
 .\scripts\inbox-setup.ps1                  # status, changes nothing
@@ -20,9 +24,18 @@ switches it only reports, and it never rotates unless asked.
 ```
 
 `-Rotate` refuses when a rotated link is already stored, because replacing it would
-invalidate the link you saved. To replace one anyway - or to recover when the link is
-lost - pass `-BreakGlass -Force`, followed by `-Token <ADMIN_TOKEN>` when the secret
-value is not at hand.
+invalidate the link you saved. To replace one anyway - which is also the expiry and
+lost-link recovery - use the menu's "Get a new unlock link", or:
+
+```powershell
+.\scripts\inbox-setup.ps1 -Setup -BreakGlass -Rotate -Force
+```
+
+That deletes the stored link, stores a freshly generated `ADMIN_TOKEN` (never printed),
+and issues a new link. `-Force` is needed twice over - it lets `-Setup` replace the
+secret and `-BreakGlass` delete the link - but it is one switch, so pass it once.
+If you still know the current secret and want to keep it, pass `-Token <value>`
+instead of `-Force`.
 
 The printed link is a one-time credential: it is shown once, stored only as a SHA-256,
 and never written to disk unless you pass `-SaveLink <path>`.
