@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { adminConfigured, adminTokenState, requireAdmin, type AdminTokenState } from "@/lib/inbox/admin-auth";
+import { adminConfigured, readSession } from "@/lib/inbox/admin-auth";
 import "./admin.css";
 
 /**
- * Shell for every admin page. The guard runs here, so an unauthenticated visitor
- * gets a 404 before any report data is queried.
+ * Shell for every admin page.
+ *
+ * The guard itself lives in the pages and route handlers (`requireAdmin` /
+ * `adminGate`), so an unauthenticated visitor gets a 404 before any report data is
+ * queried. This layout only decides whether to draw the signed-in chrome: when
+ * there is no session it steps aside, which is what lets `/admin` render the
+ * sign-in page instead of a 404.
  */
 
 export const dynamic = "force-dynamic";
@@ -28,14 +33,8 @@ export default async function AdminLayout({ children }: { children: ReactNode })
 
   if (!configured) return <SetupNotice />;
 
-  await requireAdmin();
-
-  let tokenState: AdminTokenState | null = null;
-  try {
-    tokenState = await adminTokenState();
-  } catch {
-    tokenState = null;
-  }
+  const session = await readSession();
+  if (!session) return <>{children}</>;
 
   return (
     <div className="admin-root">
@@ -48,12 +47,9 @@ export default async function AdminLayout({ children }: { children: ReactNode })
             <div className="admin-sub">Sifu Moveset Editor &middot; bug reports</div>
           </div>
           <div className="admin-actions">
-            {tokenState ? <TokenChip state={tokenState} /> : null}
-            <form action="/admin/rotate" method="post">
-              <button className="btn" type="submit">
-                Rotate link
-              </button>
-            </form>
+            <span className="chip" title="Signed in with GitHub">
+              {session.login}
+            </span>
             <form action="/admin/logout" method="post">
               <button className="btn" type="submit">
                 Sign out
@@ -70,28 +66,6 @@ export default async function AdminLayout({ children }: { children: ReactNode })
   );
 }
 
-function TokenChip({ state }: { state: AdminTokenState }) {
-  if (state.mode === "bootstrap") {
-    return (
-      <span className="chip chip-warn" title="Only the ADMIN_TOKEN environment value is in use.">
-        unlock link: bootstrap
-      </span>
-    );
-  }
-  if (state.expired) {
-    return (
-      <span className="chip chip-danger" title="The current unlock link stopped working.">
-        unlock link expired
-      </span>
-    );
-  }
-  return (
-    <span className={state.daysLeft !== null && state.daysLeft <= 5 ? "chip chip-warn" : "chip"}>
-      unlock link: {state.daysLeft ?? "?"} days left
-    </span>
-  );
-}
-
 function SetupNotice() {
   return (
     <div className="admin-root">
@@ -99,21 +73,20 @@ function SetupNotice() {
         <div className="setup">
           <h1>Inbox is not set up yet</h1>
           <p className="muted">
-            The admin area fails closed until a database binding and an unlock token exist.
+            The admin area fails closed until the database binding and the sign-in variables exist.
           </p>
           <ol>
             <li>
-              Create the database: <code>npx wrangler d1 create portfolio-inbox</code>
+              Create the D1 database and put its <code>database_id</code> into <code>wrangler.jsonc</code>, then
+              run the migration: <code>npx wrangler d1 migrations apply DB --remote</code>
             </li>
             <li>
-              Put its <code>database_id</code> into <code>wrangler.jsonc</code>, then run the migration:{" "}
-              <code>npx wrangler d1 migrations apply DB --remote</code>
+              Register a GitHub OAuth app with the callback{" "}
+              <code>https://charlestiudev.qzz.io/api/admin/auth/callback</code>
             </li>
             <li>
-              Set the bootstrap token: <code>npx wrangler secret put ADMIN_TOKEN</code>
-            </li>
-            <li>
-              Open <code>/admin/unlock?k=&lt;that token&gt;</code> once, then rotate the link from the inbox header.
+              Add three Worker variables: <code>GITHUB_CLIENT_ID</code>,{" "}
+              <code>GITHUB_CLIENT_SECRET</code> (secret) and <code>ADMIN_GITHUB_ALLOW</code>
             </li>
           </ol>
         </div>
