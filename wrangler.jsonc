@@ -25,5 +25,9 @@
       "database_id": "cf68374b-8629-4132-98dd-8145fb0a6818",
       "migrations_dir": "migrations"
     }
-  ]
+  ],
+    "vars": {
+    "ADMIN_GITHUB_ALLOW": "https://github.com/ChorlsChu",
+    "GITHUB_CLIENT_ID": "Ov23liE8u9oDAy8vrbTq"
+  },
 }
