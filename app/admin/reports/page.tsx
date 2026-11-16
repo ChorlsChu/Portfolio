@@ -66,6 +66,12 @@ export default async function ReportsPage({ searchParams }: { searchParams: Sear
           count={counts.fixed ?? 0}
         />
         <Pill
+          href={filterHref({ status: "wontfix", type, q })}
+          active={status === "wontfix"}
+          label="Wontfix"
+          count={counts.wontfix ?? 0}
+        />
+        <Pill
           href={filterHref({ status: "spam", type, q })}
           active={status === "spam"}
           label="Spam"

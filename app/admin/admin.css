@@ -324,21 +324,14 @@ table.reports a:hover {
   font-size: 12.5px;
 }
 
-pre.log {
-  margin: 0;
-  max-height: 420px;
-  overflow: auto;
-  background: #0b1218;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 12px 14px;
-  font: 11.5px/1.55 ui-monospace, Consolas, monospace;
-  color: #c3ccd4;
-  white-space: pre;
-}
-
-details.full-log pre.log {
-  max-height: none;
+/* Confirmation after a mutation. Separate from .callout, which reads as a warning. */
+.notice {
+  border-left: 3px solid var(--accent);
+  background: rgba(201, 166, 107, 0.1);
+  padding: 10px 12px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 16px;
+  font-size: 13px;
 }
 
 .note-item {

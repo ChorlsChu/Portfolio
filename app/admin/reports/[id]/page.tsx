@@ -2,7 +2,6 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { requireAdmin } from "@/lib/inbox/admin-auth";
-import { gunzipBase64 } from "@/lib/inbox/gzip";
 import { REPORT_STATUSES } from "@/lib/inbox/db";
 import { getReport, listNotes } from "@/lib/inbox/queries";
 import { removeReport, saveNote, updateStatus } from "../../actions";
@@ -14,23 +13,38 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const TAIL_LINES = 500;
-
-export default async function ReportPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function ReportPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
   await requireAdmin();
 
   const { id } = await params;
+  const query = await searchParams;
   const report = await getReport(id);
   if (!report) notFound();
 
-  const [notes, log] = await Promise.all([listNotes(id), gunzipBase64(report.log_gz)]);
+  // The log is only ever downloaded, never rendered: a 256K-character text blob in a
+  // <pre> costs more to paint than it is worth, and the download routes serve it whole.
+  const notes = await listNotes(id);
 
-  const lines = log ? log.split("\n") : [];
-  const tail = lines.slice(-TAIL_LINES).join("\n");
-  const truncated = lines.length > TAIL_LINES;
+  // Comes back from the status action's redirect, so the confirmation is rendered by
+  // an actual GET of the page rather than inferred from a mutation that may have been
+  // dropped between D1 and the response.
+  const rawUpdated = typeof query.updated === "string" ? query.updated : "";
+  const updated = (REPORT_STATUSES as readonly string[]).includes(rawUpdated) ? rawUpdated : "";
 
   return (
     <>
+      {updated ? (
+        <div className="notice">
+          Status updated to <strong>{updated}</strong>.
+        </div>
+      ) : null}
+
       <div className="detail-head">
         <div className="meta-line" style={{ marginBottom: 8 }}>
           <Link href="/admin/reports">← Inbox</Link>
@@ -68,34 +82,35 @@ export default async function ReportPage({ params }: { params: Promise<{ id: str
           ) : null}
 
           <section className="card">
-            <h2>
-              Error log {log ? `· ${lines.length.toLocaleString("en-GB")} lines` : ""}
-            </h2>
-            {log ? (
+            <h2>Error log{report.log_bytes ? ` · ${kilobytes(report.log_bytes)}` : ""}</h2>
+            {report.log_bytes ? (
               <>
-                <div className="form-row" style={{ marginTop: 0, marginBottom: 12 }}>
+                <div className="form-row" style={{ marginTop: 0 }}>
                   <a className="btn btn-sm" href={`/admin/reports/${report.id}/log`}>
                     Download .log
                   </a>
                   <a className="btn btn-sm" href={`/admin/reports/${report.id}/export`}>
                     Download report .txt
                   </a>
+                  <a className="btn btn-sm btn-accent" href={`/admin/reports/${report.id}/zip`}>
+                    Download all .zip
+                  </a>
                 </div>
-                {truncated ? <p className="muted" style={{ fontSize: 12 }}>Showing the last {TAIL_LINES} lines.</p> : null}
-                <pre className="log">{tail}</pre>
-                {truncated ? (
-                  <details className="full-log">
-                    <summary className="muted" style={{ cursor: "pointer", fontSize: 12 }}>
-                      Show full log ({lines.length.toLocaleString("en-GB")} lines)
-                    </summary>
-                    <pre className="log" style={{ marginTop: 10 }}>
-                      {log}
-                    </pre>
-                  </details>
-                ) : null}
+                <p className="muted" style={{ fontSize: 12, marginTop: 10 }}>
+                  The app sends every log file merged into one stream, each one headed with{" "}
+                  <span className="mono">----- name -----</span>. The .zip splits them back into
+                  separate files and adds the report as text.
+                </p>
               </>
             ) : (
-              <p className="muted">This report has no attached log.</p>
+              <>
+                <p className="muted">This report has no attached log.</p>
+                <div className="form-row" style={{ marginTop: 0 }}>
+                  <a className="btn btn-sm" href={`/admin/reports/${report.id}/export`}>
+                    Download report .txt
+                  </a>
+                </div>
+              </>
             )}
           </section>
         </div>
@@ -138,11 +153,14 @@ export default async function ReportPage({ params }: { params: Promise<{ id: str
             ) : null}
           </section>
 
-          <section className="card">
+          <section className="card" id="status">
             <h2>Status</h2>
             <form action={updateStatus} className="form-row" style={{ marginTop: 0 }}>
               <input type="hidden" name="id" value={report.id} />
-              <select name="status" defaultValue={report.status} aria-label="Status">
+              {/* key: without it React reuses the <select> DOM node, so a value the
+                  browser restored (or a bfcache hit) can outlive the server-rendered
+                  one and the control shows a status the database no longer has. */}
+              <select key={report.status} name="status" defaultValue={report.status} aria-label="Status">
                 {REPORT_STATUSES.map((value) => (
                   <option key={value} value={value}>
                     {value}
@@ -155,7 +173,7 @@ export default async function ReportPage({ params }: { params: Promise<{ id: str
             </form>
           </section>
 
-          <section className="card">
+          <section className="card" id="notes">
             <h2>Notes</h2>
             {notes.length === 0 ? <p className="muted" style={{ fontSize: 12 }}>No notes yet.</p> : null}
             {notes.map((note) => (
